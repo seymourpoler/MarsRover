@@ -1,4 +1,4 @@
-package katas.mars.rover
+package rover
 
 class Robot(x: Int, y: Int, direction: String) {
 

@@ -1,11 +1,11 @@
-package katas.mars.rover
+package rover
 
-class South : Direction {
+class East : Direction {
     override fun forward(position: Position): Position {
-        return position.down()
+        return position.right()
     }
 
     override fun backward(position: Position): Position {
-        return position.up()
+        return position.left()
     }
 }

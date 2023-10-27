@@ -1,4 +1,4 @@
-package katas.mars.rover
+package rover
 
 interface Direction {
     fun forward(position: Position) : Position

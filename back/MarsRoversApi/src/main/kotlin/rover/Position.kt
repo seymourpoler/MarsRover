@@ -1,4 +1,4 @@
-package katas.mars.rover
+package rover
 
 data class Position(val x: Int, val y: Int) {
     fun up() : Position {
