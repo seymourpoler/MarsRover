@@ -3,12 +3,16 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { MarsRoverRepository } from './infrastructure/MarsRoverRepository';
 
+const repositories = {
+  marsRover: new MarsRoverRepository(),
+}
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <App repositories={repositories} />
   </React.StrictMode>
 );
 

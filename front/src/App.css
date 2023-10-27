@@ -1,3 +1,21 @@
-.App {
+:root {
+  --cell-size: 4rem;
+}
+
+.mars-rover-map {
+  background-color: #ffffff;
+  border-collapse: collapse;
+}
+
+.mars-rover-map-cell {
+  width: var(--cell-size);
+  height: var(--cell-size);
+  border: 1px solid #c4c4c4;
+}
+
+.mars-rover {
+  width: var(--cell-size);
+  height: var(--cell-size);
+  line-height: var(--cell-size);
   text-align: center;
 }
