@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { MarsRoverPresenter } from './MarsRoverPresenter';
+import { createMarsRoverPresenter } from './MarsRoverPresenter';
 import { createHttp } from './../../Http'
 
 export class MarsRoverView extends Component {
@@ -13,7 +13,7 @@ export class MarsRoverView extends Component {
         }
     }
 
-    presenter = new MarsRoverPresenter(this, createHttp());
+    presenter = createMarsRoverPresenter(this, createHttp());
 
     onSendCommand = (event) => {
         this.presenter.sendCommand(this.state.command);
