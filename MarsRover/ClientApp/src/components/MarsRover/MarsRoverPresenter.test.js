@@ -6,7 +6,7 @@ import { HttpStatusCode } from './../../HttpStatusCode';
 
 
 describe('Mars Rover Presenter', () => {
-    let view, presenter, service, http;
+    let view, presenter, http;
 
     beforeEach(() => {
         view = createMarsRoverView();

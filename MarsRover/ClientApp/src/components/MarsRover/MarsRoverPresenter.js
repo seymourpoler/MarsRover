@@ -5,14 +5,16 @@ export function createMarsRoverPresenter(view, http) {
      var sendCommand = async function (command) {
          view.cleanMessages();
 
-         const response = await http.post('command', command);
+         // TODO: change url
+         const response = await http.post('weatherforecast', { "value": command });
+         console.log('log ' + JSON.stringify(response));
 
         if (response.statusCode === HttpStatusCode.internalServerError) {
              view.showMessage('something went wrong');
          }
-    }
+     }
 
     return {
-        sendCommand: sendCommand
+        sendCommand : sendCommand
     }
 }

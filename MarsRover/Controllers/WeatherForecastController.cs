@@ -29,5 +29,11 @@ namespace MarsRover.Controllers
             })
             .ToArray();
         }
+
+        [HttpPost]
+        public IActionResult Post([FromBody] CommandRequest commandRequest)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
