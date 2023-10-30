@@ -4,12 +4,12 @@
 
 namespace MarsRover.Controllers
 {
-    [Route("api/v0/[controller]")]
     [ApiController]
-    public class CommandsController : ControllerBase
+    [Route("[controller]")]
+    public class CommandController : ControllerBase
     {
         [HttpPost]
-        public IActionResult Post([FromBody] string value)
+        public IActionResult ExecuteCommand([FromBody] CommandRequest commandRequest)
         {
             throw new NotImplementedException();
         }

@@ -16,7 +16,7 @@ export class MarsRoverView extends Component {
     presenter = createMarsRoverPresenter(this, createHttp());
 
     onSendCommand = (event) => {
-        presenter.sendCommand(this.state.command);
+        this.presenter.sendCommand(this.state.command);
     }
 
     onTxtCommandChangedHandler = (event) => {
