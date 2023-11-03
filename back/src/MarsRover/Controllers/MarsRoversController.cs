@@ -1,5 +1,4 @@
 using MarsRovers.Integration.Tests;
-using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MarsRover.Controllers;
