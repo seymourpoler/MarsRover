@@ -201,3 +201,10 @@ $RECYCLE.BIN/
 # End of https://www.toptal.com/developers/gitignore/api/visualstudiocode,jetbrains+all,macos,windows
 *.dll
 *.exe
+/back/src/MarsRover/obj/Debug/net7.0/MarsRover.csproj.AssemblyReference.cache
+/back/src/MarsRover/obj/Debug/net7.0/MarsRover.GeneratedMSBuildEditorConfig.editorconfig
+/back/tests/MarsRovers.Integration.Tests/bin/Debug/net7.0/CoverletSourceRootsMapping
+/back/tests/MarsRovers.Integration.Tests/obj/Debug/net7.0/MarsRovers.Integration.Tests.csproj.AssemblyReference.cache
+/back/tests/MarsRovers.Integration.Tests/obj/Debug/net7.0/MarsRovers.Integration.Tests.GeneratedMSBuildEditorConfig.editorconfig
+/back/tests/MarsRovers.Unit.Tests/obj/Debug/net7.0/MarsRovers.Unit.Tests.csproj.AssemblyReference.cache
+/back/tests/MarsRovers.Unit.Tests/obj/Debug/net7.0/MarsRovers.Unit.Tests.GeneratedMSBuildEditorConfig.editorconfig
