@@ -157,6 +157,8 @@ Temporary Items
 
 #Visual Studio
 .vs/
+bin/
+obj/
 
 # Local History for Visual Studio Code
 .history/
