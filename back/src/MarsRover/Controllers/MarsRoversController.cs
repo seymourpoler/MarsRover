@@ -30,7 +30,7 @@ public class MarsRoversController : ControllerBase
         //return _repository.GetWeather();
     }
     
-    [HttpPost()]
+    [HttpPost]
     public IActionResult Post([FromBody] MarsRoversRequest marsRoversRequest)
     {
         var marsRoversResponse = new List<MarsRoversResponse> { new MarsRoversResponse(0,0,"N") };

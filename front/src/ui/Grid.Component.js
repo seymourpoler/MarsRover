@@ -22,6 +22,17 @@ function Grid({ marsRoverRepository }) {
       })
   }
 
+  const onGetRobotPosition = () =>{
+    marsRoverRepository.getRobotPosition()
+    .then(positions =>{
+      const firstPosition = positions[0];
+      setPosition({
+        x: firstPosition.x,
+        y: firstPosition.y,
+      })
+    }); 
+  }
+
   const isMarsRoverInPosition = (x, y) => {
     return position.x === x && position.y === y
   }
@@ -29,6 +40,7 @@ function Grid({ marsRoverRepository }) {
   return (
     <>
      <button onClick={sendCommands}>Send commands</button>
+     <button onClick={onGetRobotPosition}>Get Robot Position</button>
 
      <table className="mars-rover-map">
       <tbody>
