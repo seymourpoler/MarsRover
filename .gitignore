@@ -159,6 +159,7 @@ Temporary Items
 .vs/
 bin/
 obj/
+*.csproj.user
 
 # Local History for Visual Studio Code
 .history/
