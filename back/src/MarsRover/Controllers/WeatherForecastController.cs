@@ -1,4 +1,5 @@
 using MarsRovers.Integration.Tests;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MarsRover.Controllers;
@@ -16,7 +17,8 @@ public class WeatherForecastController : ControllerBase
         _logger = logger;
     }
 
-    [HttpGet(Name = "GetWeatherForecast")]
+    [HttpGet("mock")]
+    //[EnableCors]
     public IEnumerable<WeatherForecast> GetMock()
     {
         string[] Summaries = new[]
@@ -44,6 +46,7 @@ public class WeatherForecastController : ControllerBase
     [HttpPost]
     public IActionResult Post([FromBody] WeatherForecast weatherForecast)
     {
+        return Ok();
         _repository.Save(weatherForecast);
         return CreatedAtRoute("GetWeatherForecast", null, null);
     }

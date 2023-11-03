@@ -15,6 +15,16 @@ builder.Services.AddDbContext<WeatherForecastDbContext>(options => options.UseIn
 // builder.Services.AddScoped<IWeatherForecastRepository, SqlCarrierRepository>(); //TODO: Change for this
 builder.Services.AddScoped<IWeatherForecastRepository, WeatherForecastRepositoryInMemory>(); //TODO: Change for this
 
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(builder =>
+    {
+        builder.WithOrigins("http://localhost:3000") // Agrega el origen de tu frontend
+               .AllowAnyHeader()
+               .AllowAnyMethod();
+    });
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -29,6 +39,8 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.UseCors();
 
 app.Run();
 
