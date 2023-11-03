@@ -31,3 +31,6 @@ C:\Users\ruben\Proyectos\MarsRover\back\src\MarsRover\obj\Debug\net7.0\refint\Ma
 C:\Users\ruben\Proyectos\MarsRover\back\src\MarsRover\obj\Debug\net7.0\MarsRover.pdb
 C:\Users\ruben\Proyectos\MarsRover\back\src\MarsRover\obj\Debug\net7.0\MarsRover.genruntimeconfig.cache
 C:\Users\ruben\Proyectos\MarsRover\back\src\MarsRover\obj\Debug\net7.0\ref\MarsRover.dll
+C:\Users\ruben\Proyectos\MarsRover\back\src\MarsRover\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.dll
+C:\Users\ruben\Proyectos\MarsRover\back\src\MarsRover\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+C:\Users\ruben\Proyectos\MarsRover\back\src\MarsRover\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.InMemory.dll

@@ -24,6 +24,7 @@ public class WeatherForecastControllerTests
     public async Task GetWeather()
     {
         _repository.Save(new WeatherForecastBuilder().Build());
+        _repository.Save(new WeatherForecastBuilder().Build());
 
         var response = await _httpClient.GetAsync($"{BaseUrl}");
 
