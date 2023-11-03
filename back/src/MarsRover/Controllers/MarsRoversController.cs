@@ -17,10 +17,17 @@ public class MarsRoversController : ControllerBase
         _logger = logger;
     }
     
-    [HttpGet(Name = "GetWeatherForecast")]
-    public IEnumerable<MarsRoversRequest> Get()
+    [HttpGet]
+    public IActionResult Get()
     {
-        return _repository.GetWeather();
+        return Ok(new[]
+        {
+            new MarsRoversResponse(0, 0, "N"),
+            new MarsRoversResponse(0, 1, "N"),
+            new MarsRoversResponse(0, 2, "N"),
+            new MarsRoversResponse(0, 2, "E"),
+        });
+        //return _repository.GetWeather();
     }
     
     [HttpPost()]
@@ -28,6 +35,7 @@ public class MarsRoversController : ControllerBase
     {
         var marsRoversResponse = new List<MarsRoversResponse> { new MarsRoversResponse(0,0,"N") };
         return Ok(marsRoversResponse);
+
         _repository.Save(marsRoversRequest);
         return CreatedAtRoute("GetWeatherForecast", null, null);
     }
