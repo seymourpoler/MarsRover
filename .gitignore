@@ -203,9 +203,9 @@ $RECYCLE.BIN/
 *.exe
 
 
-/back/src/MarsRover/bin/
-/back/src/MarsRover/obj/
-/back/tests/MarsRovers.Integration.Tests/bin/
-/back/tests/MarsRovers.Integration.Tests/obj/
-/back/tests/MarsRovers.Unit.Tests/bin/
-/back/tests/MarsRovers.Unit.Tests/obj/
+back/src/MarsRover/bin/
+back/src/MarsRover/obj/
+back/tests/MarsRovers.Integration.Tests/bin/
+back/tests/MarsRovers.Integration.Tests/obj/
+back/tests/MarsRovers.Unit.Tests/bin/
+back/tests/MarsRovers.Unit.Tests/obj/
