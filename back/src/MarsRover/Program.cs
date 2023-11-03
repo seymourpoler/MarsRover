@@ -11,9 +11,9 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddDbContext<WeatherForecastDbContext>(options => options.UseInMemoryDatabase("WeatherForecastDb"));
+builder.Services.AddDbContext<MarsRoversDbContext>(options => options.UseInMemoryDatabase("WeatherForecastDb"));
 // builder.Services.AddScoped<IWeatherForecastRepository, SqlCarrierRepository>(); //TODO: Change for this
-builder.Services.AddScoped<IWeatherForecastRepository, WeatherForecastRepositoryInMemory>(); //TODO: Change for this
+builder.Services.AddScoped<IMarsRoversRepository, MarsRoversRepositoryInMemory>(); //TODO: Change for this
 
 builder.Services.AddCors(options =>
 {
@@ -48,23 +48,23 @@ public partial class Program { }
 
 
 // TODO: REMOVE THIS WHEN THE REAL REPOSITORY IS IMPLEMENTED
-public class WeatherForecastRepositoryInMemory: IWeatherForecastRepository
+public class MarsRoversRepositoryInMemory: IMarsRoversRepository
 {
-    private readonly WeatherForecastDbContext _context;
+    private readonly MarsRoversDbContext _context;
 
-    public WeatherForecastRepositoryInMemory(WeatherForecastDbContext context)
+    public MarsRoversRepositoryInMemory(MarsRoversDbContext context)
     {
         _context = context;
     }
 
-    public void Save(WeatherForecast weatherForecast)
+    public void Save(MarsRover.MarsRoversRequest marsRoversRequest)
     {
-        _context.WeatherForecasts.Add(weatherForecast);
+        _context.marsRovers.Add(marsRoversRequest);
         _context.SaveChanges();
     }
 
-    public List<WeatherForecast> GetWeather()
+    public List<MarsRover.MarsRoversRequest> GetWeather()
     {
-        return _context.WeatherForecasts.ToList();
+        return _context.marsRovers.ToList();
     }
 }

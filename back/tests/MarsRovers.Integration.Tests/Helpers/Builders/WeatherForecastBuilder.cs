@@ -38,9 +38,9 @@ public class WeatherForecastBuilder
         return this;
     }
     
-    public WeatherForecast Build()
+    public MarsRover.MarsRoversRequest Build()
     {
-        return new WeatherForecast
+        return new MarsRover.MarsRoversRequest
         {
             Id = Id,
             Date = Date,

@@ -9,7 +9,7 @@ public class WeatherForecastDbContext: DbContext
         : base(options)
     { }
 
-    public DbSet<WeatherForecast> WeatherForecast { get; set; }
+    public DbSet<MarsRover.MarsRoversRequest> WeatherForecast { get; set; }
     
     public static DbContextOptions<WeatherForecastDbContext> DbContextOptions()
     {

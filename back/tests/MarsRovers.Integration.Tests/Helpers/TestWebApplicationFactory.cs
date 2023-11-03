@@ -23,7 +23,7 @@ public class TestWebApplicationFactory: WebApplicationFactory<Program>
         DbContext = new WeatherForecastDbContext(WeatherForecastDbContext.DbContextOptions());
         builder.ConfigureServices(services =>
         {
-            services.AddScoped<IWeatherForecastRepository, WeatherForecastRepositoryInMemory>(x => new WeatherForecastRepositoryInMemory(DbContext));
+            services.AddScoped<IMarsRoversRepository, MarsRoversRepositoryInMemory>(x => new MarsRoversRepositoryInMemory(DbContext));
         });
 
         return base.CreateHost(builder);

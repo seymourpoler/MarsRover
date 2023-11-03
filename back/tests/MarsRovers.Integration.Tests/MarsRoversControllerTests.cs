@@ -6,18 +6,18 @@ using MarsRover;
 
 namespace MarsRovers.Integration.Tests;
 
-public class WeatherForecastControllerTests
+public class MarsRoversControllerTests
 {
     private readonly TestWebApplicationFactory _application;
     private readonly HttpClient _httpClient;
     private const string BaseUrl = "api/WeatherForecast";
-    private readonly WeatherForecastRepositoryInMemory _repository;
+    private readonly MarsRoversRepositoryInMemory _repository;
 
-    public WeatherForecastControllerTests()
+    public MarsRoversControllerTests()
     {
         _application = new TestWebApplicationFactory();
         _httpClient = _application.CreateClient();
-        _repository = new WeatherForecastRepositoryInMemory(_application.DbContext);
+        _repository = new MarsRoversRepositoryInMemory(_application.DbContext);
     }
 
     [Fact]
@@ -29,7 +29,7 @@ public class WeatherForecastControllerTests
         var response = await _httpClient.GetAsync($"{BaseUrl}");
 
         var stringResult = await response.Content.ReadAsStringAsync();
-        var carriers = JsonDeserializeContent<List<WeatherForecast>>(stringResult);
+        var carriers = JsonDeserializeContent<List<MarsRover.MarsRoversRequest>>(stringResult);
 
         carriers.Should().HaveCount(2);
         response.EnsureSuccessStatusCode();

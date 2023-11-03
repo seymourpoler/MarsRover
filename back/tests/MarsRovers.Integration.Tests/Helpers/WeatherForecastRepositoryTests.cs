@@ -9,13 +9,13 @@ public class WeatherForecastRepositoryTests
 
         using (var context = new WeatherForecastDbContext(options))
         {
-            var repository = new WeatherForecastRepositoryInMemory(context);
+            var repository = new MarsRoversRepositoryInMemory(context);
             repository.Save(new WeatherForecastBuilder().Build());
         }
 
         using (var context = new WeatherForecastDbContext(options))
         {
-            var repository = new WeatherForecastRepositoryInMemory(context);
+            var repository = new MarsRoversRepositoryInMemory(context);
             var carriers = repository.GetWeather();
             carriers.Count.Should().Be(1);
         }
