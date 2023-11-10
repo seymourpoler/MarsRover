@@ -32,8 +32,7 @@ public class MarsRoversController : ControllerBase
     [HttpPost]
     public IActionResult Post([FromBody] MarsRoversRequest marsRoversRequest)
     {
-        var marsRoversResponse = new List<MarsRoversResponse> { new MarsRoversResponse(0,0,"N") };
-        return Ok(marsRoversResponse);
+        return Ok(new MarsRoversResponse(0, 1, "N"));
 
         _repository.Save(marsRoversRequest);
         return CreatedAtRoute("GetWeatherForecast", null, null);

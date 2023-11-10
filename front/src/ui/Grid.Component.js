@@ -11,13 +11,12 @@ function Grid({ marsRoverRepository }) {
     [{x: 0, y: 0}, {x: 1, y: 0}, {x: 2, y: 0}],
   ]
   
-  const sendCommands = () => {
+  const onSendCommands = () => {
     marsRoverRepository.sendCommands()
-      .then((movements) => {
-        const firstMovement = movements[0];
+      .then((movement) => {
         setPosition({
-          x: firstMovement.x,
-          y: firstMovement.y,
+          x: movement.x,
+          y: movement.y,
         })
       })
   }
@@ -39,9 +38,6 @@ function Grid({ marsRoverRepository }) {
 
   return (
     <>
-     <button onClick={sendCommands}>Send commands</button>
-     <button onClick={onGetRobotPosition}>Get Robot Position</button>
-
      <table className="mars-rover-map">
       <tbody>
         {grid.map((row, rowIndex) => (
@@ -53,7 +49,7 @@ function Grid({ marsRoverRepository }) {
                     className="mars-rover-map-cell"
                     aria-label={`Longitude ${cell.x}, Latitude ${cell.y}`}
                   >
-                    {isMarsRoverInPosition(cell.x, cell.y) && <MarsRover />}
+                    {isMarsRoverInPosition(cell.x, cell.y) ? <div className="mars-rover" aria-label="Mars rover">X</div> : null}
                   </td>
                 )
               })}
@@ -62,6 +58,9 @@ function Grid({ marsRoverRepository }) {
         )}
       </tbody>
      </table>
+     <button onClick={onGetRobotPosition}>Get Robot Position</button>
+     <p>Commands: <input type='text' id='txtCommands' /></p>
+     <button onClick={onSendCommands}>Send commands</button>
     </>
   )
 }
