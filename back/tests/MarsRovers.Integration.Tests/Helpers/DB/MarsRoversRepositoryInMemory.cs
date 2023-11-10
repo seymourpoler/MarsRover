@@ -11,13 +11,13 @@ public class MarsRoversRepositoryInMemory: IMarsRoversRepository
         _context = context;
     }
 
-    public void Save(MarsRover.MarsRoversRequest marsRoversRequest)
+    public void Save(MarsRoversRequest marsRoversRequest)
     {
         _context.WeatherForecast.Add(marsRoversRequest);
         _context.SaveChanges();
     }
 
-    public List<MarsRover.MarsRoversRequest> GetWeather()
+    public List<MarsRoversRequest> GetWeather()
     {
         return _context.WeatherForecast.ToList();
     }

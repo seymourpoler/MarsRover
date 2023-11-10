@@ -10,7 +10,7 @@ public class MarsRoversController : ControllerBase
     private readonly IMarsRoversRepository _repository;
     private readonly ILogger<MarsRoversController> _logger;
 
-    public MarsRoversController(IMarsRoversRepository repository ,ILogger<MarsRoversController> logger)
+    public MarsRoversController(IMarsRoversRepository repository, ILogger<MarsRoversController> logger)
     {
         _repository = repository;
         _logger = logger;

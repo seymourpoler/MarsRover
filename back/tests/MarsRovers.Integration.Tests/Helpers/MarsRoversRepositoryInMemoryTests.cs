@@ -1,6 +1,8 @@
-﻿namespace MarsRovers.Integration.Tests;
+﻿using MarsRovers.Integration.Tests.Helpers.Builders;
 
-public class WeatherForecastRepositoryTests
+namespace MarsRovers.Integration.Tests;
+
+public class MarsRoversRepositoryInMemoryTests
 {
     [Fact]
     public void Should_Save()
@@ -10,7 +12,7 @@ public class WeatherForecastRepositoryTests
         using (var context = new WeatherForecastDbContext(options))
         {
             var repository = new MarsRoversRepositoryInMemory(context);
-            repository.Save(new WeatherForecastBuilder().Build());
+            repository.Save(MarsRoversRequestBuilder.WithCommands("FFFF"));
         }
 
         using (var context = new WeatherForecastDbContext(options))

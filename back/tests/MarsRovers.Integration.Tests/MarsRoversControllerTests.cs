@@ -3,6 +3,7 @@ using System.Net.Mime;
 using System.Text;
 using System.Text.Json;
 using MarsRover;
+using MarsRovers.Integration.Tests.Helpers.Builders;
 
 namespace MarsRovers.Integration.Tests;
 
@@ -23,13 +24,13 @@ public class MarsRoversControllerTests
     [Fact]
     public async Task GetWeather()
     {
-        _repository.Save(new WeatherForecastBuilder().Build());
-        _repository.Save(new WeatherForecastBuilder().Build());
+        _repository.Save(MarsRoversRequestBuilder.WithCommands("FFFF"));
+        _repository.Save(MarsRoversRequestBuilder.WithCommands("FFFF"));
 
         var response = await _httpClient.GetAsync($"{BaseUrl}");
 
         var stringResult = await response.Content.ReadAsStringAsync();
-        var carriers = JsonDeserializeContent<List<MarsRover.MarsRoversRequest>>(stringResult);
+        var carriers = JsonDeserializeContent<List<MarsRoversRequest>>(stringResult);
 
         carriers.Should().HaveCount(2);
         response.EnsureSuccessStatusCode();
