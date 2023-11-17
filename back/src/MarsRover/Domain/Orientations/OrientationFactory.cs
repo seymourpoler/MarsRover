@@ -10,6 +10,8 @@
                 return new East();
             if (orientation == "S")
                 return new South();
+            if (orientation == "W")
+                return new West();
 
             throw new NotImplementedException();
         }
