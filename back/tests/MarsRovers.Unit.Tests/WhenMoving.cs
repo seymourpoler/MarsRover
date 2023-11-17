@@ -37,5 +37,16 @@ namespace MarsRovers.Unit.Tests
 
             repository.Received().Save(Arg.Is<MarsRover.Domain.Situation>(situation => situation.X == 0 && situation.Y == -1 && situation.Orientation == "N"));
         }
+
+        [Fact]
+        public void ToTheEastSavesRobotSituation()
+        {
+            var robot = new Robot(0, 0, "E");
+            repository.Find().Returns(robot);
+
+            manager.Move("F");
+
+            repository.Received().Save(Arg.Is<MarsRover.Domain.Situation>(situation => situation.X == 1 && situation.Y == 0 && situation.Orientation == "E"));
+        }
     }
 }

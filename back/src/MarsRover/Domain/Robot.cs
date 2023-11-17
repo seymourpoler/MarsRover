@@ -18,15 +18,15 @@ namespace MarsRover.Domain
             return new Situation(position.x, position.y, orientation.ToString());
         }
 
-        public void move(string movements)
+        public void Move(string movements)
         {
             foreach(var movement in movements)
             {
-                move(movement);
+                Move(movement);
             }
         }
 
-        public void move(char movement)
+        private void Move(char movement)
         {
             if(movement == 'F')
             {
@@ -39,7 +39,7 @@ namespace MarsRover.Domain
                 return;
             }
 
-            orientation = OrientationFactory.Create(movement);
+            orientation = OrientationFactory.Create(movement.ToString());
         }
     }
 }

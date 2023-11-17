@@ -14,7 +14,7 @@ namespace MarsRover.Domain
         public void Move(string movements)
         {
             var robot = marsRoversRepository.Find();
-            robot.move(movements);
+            robot.Move(movements);
             marsRoversRepository.Save(robot.GetSituation());
         }
     }

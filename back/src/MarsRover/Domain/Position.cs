@@ -11,5 +11,10 @@
         {
             return new Position(x, y - 1);
         }
+
+        public Position Right()
+        {
+            return new Position(x + 1, y);
+        }
     }
 }
