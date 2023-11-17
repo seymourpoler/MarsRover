@@ -17,7 +17,7 @@ namespace MarsRovers.Unit.Tests
 
 
         [Fact]
-        public void ToTheNorthItSavesRobotSituation()
+        public void ForwardToTheNorthItSavesRobotSituation()
         {
             var robot = new Robot(0, 0 , "N");
             repository.Find().Returns(robot);
@@ -28,7 +28,7 @@ namespace MarsRovers.Unit.Tests
         }
 
         [Fact]
-        public void ToTheSouthSavesRobotSituation()
+        public void BackwardToTheSouthSavesRobotSituation()
         {
             var robot = new Robot(0, 0, "N");
             repository.Find().Returns(robot);
@@ -39,7 +39,29 @@ namespace MarsRovers.Unit.Tests
         }
 
         [Fact]
-        public void ToTheEastSavesRobotSituation()
+        public void ForwardToTheSouthItSavesRobotSituation()
+        {
+            var robot = new Robot(0, 0, "S");
+            repository.Find().Returns(robot);
+
+            manager.Move("F");
+
+            repository.Received().Save(Arg.Is<MarsRover.Domain.Situation>(situation => situation.X == -1 && situation.Y == 0 && situation.Orientation == "S"));
+        }
+
+        [Fact]
+        public void BackwardToTheNorthItSavesRobotSituation()
+        {
+            var robot = new Robot(0, 0, "S");
+            repository.Find().Returns(robot);
+
+            manager.Move("B");
+
+            repository.Received().Save(Arg.Is<MarsRover.Domain.Situation>(situation => situation.X == 0 && situation.Y == 1 && situation.Orientation == "S"));
+        }
+
+        [Fact]
+        public void ForwardToTheEastSavesRobotSituation()
         {
             var robot = new Robot(0, 0, "E");
             repository.Find().Returns(robot);

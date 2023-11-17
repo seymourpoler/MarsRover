@@ -4,12 +4,12 @@
     {
         public override Position Backward(Position position)
         {
-            throw new NotImplementedException();
+            return position.Up();
         }
 
         public override Position Forward(Position position)
         {
-            throw new NotImplementedException();
+            return position.Down();
         }
 
         public override string ToString()

@@ -8,6 +8,8 @@
                 return new North();
             if (orientation == "E")
                 return new East();
+            if (orientation == "S")
+                return new South();
 
             throw new NotImplementedException();
         }
