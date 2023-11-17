@@ -1,4 +1,4 @@
-﻿using MarsRover;
+﻿using MarsRover.Controllers;
 
 namespace MarsRovers.Integration.Tests.Helpers.Builders
 {
