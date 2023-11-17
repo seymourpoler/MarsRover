@@ -1,8 +1,7 @@
-using System.Net;
 using System.Net.Mime;
 using System.Text;
 using System.Text.Json;
-using MarsRover;
+using MarsRover.Controllers;
 using MarsRovers.Integration.Tests.Helpers.Builders;
 
 namespace MarsRovers.Integration.Tests;
