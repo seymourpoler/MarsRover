@@ -535,3 +535,14 @@ ASALocalRun/
 *.received.json
 
 # End of https://www.gitignore.io/api/visualstudio
+
+
+back/src/MarsRover/bin/
+back/src/MarsRover/obj/
+
+back/tests/MarsRover.Integration.Tests/bin/
+back/tests/MarsRover.Integration.Tests/obj/
+
+back/tests/MarsRover.Unit.Tests/bin/
+back/tests/MarsRover.Unit.Tests/obj/
+
