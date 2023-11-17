@@ -16,5 +16,10 @@
         {
             return new Position(x + 1, y);
         }
+
+        internal Position Left()
+        {
+            return new Position(x - 1, y);
+        }
     }
 }
