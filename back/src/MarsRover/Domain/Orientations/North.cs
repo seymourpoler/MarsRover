@@ -4,7 +4,7 @@
     {
         public override Position Backward(Position position)
         {
-            return position.Up();
+            return position.Down();
         }
 
         public override Position Forward(Position position)

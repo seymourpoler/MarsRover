@@ -6,5 +6,10 @@
         {
             return new Position(x, y + 1);
         }
+
+        public Position Down()
+        {
+            return new Position(x, y - 1);
+        }
     }
 }

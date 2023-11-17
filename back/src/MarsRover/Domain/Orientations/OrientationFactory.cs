@@ -6,7 +6,6 @@
         {
             if (orientation == "N")
                 return new North();
-
             throw new NotImplementedException();
         }
         public static Orientation Create(char orientation)
