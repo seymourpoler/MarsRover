@@ -156,10 +156,10 @@ Temporary Items
 !.vscode/*.code-snippets
 
 #Visual Studio
-.vs/
-bin/
-obj/
-*.csproj.user
+**/.vs/
+**/bin/
+**/obj/
+**/*.csproj.user
 
 # Local History for Visual Studio Code
 .history/
@@ -199,8 +199,8 @@ $RECYCLE.BIN/
 *.lnk
 
 # End of https://www.toptal.com/developers/gitignore/api/visualstudiocode,jetbrains+all,macos,windows
-*.dll
-*.exe
+**/*.dll
+**/*.exe
 
 
 
