@@ -91,5 +91,16 @@ namespace MarsRovers.Unit.Tests
 
             repository.Received().Save(Arg.Is<MarsRover.Domain.Situation>(situation => situation.X == -1 && situation.Y == 0 && situation.Orientation == "W"));
         }
+
+        [Fact]
+        public void BackwardToTheEastSavesRobotSituation()
+        {
+            var robot = new Robot(0, 0, "W");
+            repository.Find().Returns(robot);
+
+            manager.Move("B");
+
+            repository.Received().Save(Arg.Is<MarsRover.Domain.Situation>(situation => situation.X == 1 && situation.Y == 0 && situation.Orientation == "W"));
+        }
     }
 }

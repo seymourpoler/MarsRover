@@ -4,7 +4,7 @@
     {
         public override Position Backward(Position position)
         {
-            throw new NotImplementedException();
+            return position.Right();
         }
 
         public override Position Forward(Position position)
