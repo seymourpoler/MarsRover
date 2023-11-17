@@ -1,4 +1,4 @@
-﻿using MarsRover;
+﻿using MarsRover.Controllers;
 using Microsoft.EntityFrameworkCore;
 
 namespace MarsRovers.Integration.Tests;
@@ -9,7 +9,7 @@ public class WeatherForecastDbContext: DbContext
         : base(options)
     { }
 
-    public DbSet<MarsRover.MarsRoversRequest> WeatherForecast { get; set; }
+    public DbSet<MarsRoversRequest> WeatherForecast { get; set; }
     
     public static DbContextOptions<WeatherForecastDbContext> DbContextOptions()
     {

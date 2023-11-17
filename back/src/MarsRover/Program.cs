@@ -1,5 +1,4 @@
-using MarsRover;
-using MarsRovers.Integration.Tests;
+using MarsRover.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -49,26 +48,3 @@ app.UseCors();
 app.Run();
 
 public partial class Program { }
-
-
-// TODO: REMOVE THIS WHEN THE REAL REPOSITORY IS IMPLEMENTED
-public class MarsRoversRepositoryInMemory: IMarsRoversRepository
-{
-    private readonly MarsRoversDbContext _context;
-
-    public MarsRoversRepositoryInMemory(MarsRoversDbContext context)
-    {
-        _context = context;
-    }
-
-    public void Save(MarsRover.MarsRoversRequest marsRoversRequest)
-    {
-        _context.marsRovers.Add(marsRoversRequest);
-        _context.SaveChanges();
-    }
-
-    public List<MarsRover.MarsRoversRequest> GetWeather()
-    {
-        return _context.marsRovers.ToList();
-    }
-}

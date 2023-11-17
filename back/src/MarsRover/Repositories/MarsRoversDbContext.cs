@@ -1,6 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using MarsRover.Controllers;
+using Microsoft.EntityFrameworkCore;
 
-namespace MarsRover;
+namespace MarsRover.Repositories;
 
 public class MarsRoversDbContext : DbContext
 {
@@ -8,4 +9,5 @@ public class MarsRoversDbContext : DbContext
     { }
 
     public DbSet<MarsRoversRequest> marsRovers { get; set; }
+    public DbSet<Situation> Situations{ get; set; }
 }
