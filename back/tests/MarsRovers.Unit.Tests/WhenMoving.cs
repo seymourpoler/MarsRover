@@ -17,7 +17,7 @@ namespace MarsRovers.Unit.Tests
 
 
         [Fact]
-        public void SaveRobotSituation()
+        public void ToTheNorthItSavesRobotSituation()
         {
             var robot = new Robot(0, 0 , "N");
             repository.Find().Returns(robot);
@@ -25,6 +25,17 @@ namespace MarsRovers.Unit.Tests
             manager.Move("F");
 
             repository.Received().Save(Arg.Is<MarsRover.Domain.Situation>(situation => situation.X == 0 && situation.Y == 1 && situation.Orientation == "N"));
+        }
+
+        [Fact]
+        public void ToTheSouthSavesRobotSituation()
+        {
+            var robot = new Robot(0, 0, "N");
+            repository.Find().Returns(robot);
+
+            manager.Move("B");
+
+            repository.Received().Save(Arg.Is<MarsRover.Domain.Situation>(situation => situation.X == 0 && situation.Y == -1 && situation.Orientation == "N"));
         }
     }
 }

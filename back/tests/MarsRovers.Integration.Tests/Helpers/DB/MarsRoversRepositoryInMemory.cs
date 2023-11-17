@@ -1,4 +1,5 @@
 ﻿using MarsRover.Controllers;
+using MarsRover.Domain;
 using MarsRover.Repositories;
 
 namespace MarsRovers.Integration.Tests;
@@ -21,5 +22,15 @@ public class MarsRoversRepositoryInMemory: IMarsRoversRepository
     public List<MarsRoversRequest> GetWeather()
     {
         return _context.WeatherForecast.ToList();
+    }
+
+    public void Save(MarsRover.Domain.Situation situation)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Robot Find()
+    {
+        throw new NotImplementedException();
     }
 }

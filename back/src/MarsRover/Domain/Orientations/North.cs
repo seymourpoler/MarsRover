@@ -9,7 +9,7 @@
 
         public override Position Forward(Position position)
         {
-            throw new NotImplementedException();
+            return position.Up();
         }
 
         public override string ToString()
