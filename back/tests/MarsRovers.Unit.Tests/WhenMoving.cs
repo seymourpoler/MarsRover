@@ -15,7 +15,6 @@ namespace MarsRovers.Unit.Tests
             manager = new MarsRoverManager(repository);
         }
 
-
         [Fact]
         public void ForwardToTheNorthItSavesRobotSituation()
         {
@@ -46,7 +45,7 @@ namespace MarsRovers.Unit.Tests
 
             manager.Move("F");
 
-            repository.Received().Save(Arg.Is<MarsRover.Domain.Situation>(situation => situation.X == -1 && situation.Y == 0 && situation.Orientation == "S"));
+            repository.Received().Save(Arg.Is<MarsRover.Domain.Situation>(situation => situation.X == 0 && situation.Y == -1 && situation.Orientation == "S"));
         }
 
         [Fact]
