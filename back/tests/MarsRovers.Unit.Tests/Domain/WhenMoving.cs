@@ -2,7 +2,7 @@
 using MarsRover.Repositories;
 using NSubstitute;
 
-namespace MarsRovers.Unit.Tests
+namespace MarsRovers.Unit.Tests.Domain
 {
     public class WhenMoving
     {
@@ -18,7 +18,7 @@ namespace MarsRovers.Unit.Tests
         [Fact]
         public void ForwardToTheNorth()
         {
-            var robot = new Robot(0, 0 , "N");
+            var robot = new Robot(0, 0, "N");
             repository.Find().Returns(robot);
 
             manager.Move("F");
