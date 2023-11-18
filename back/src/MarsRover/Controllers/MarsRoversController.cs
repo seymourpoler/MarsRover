@@ -1,3 +1,4 @@
+using MarsRover.Domain;
 using MarsRover.Repositories;
 using Microsoft.AspNetCore.Mvc;
 
@@ -7,26 +8,20 @@ namespace MarsRover.Controllers;
 [Route("api/[controller]")]
 public class MarsRoversController : ControllerBase
 {
-    private readonly IMarsRoversRepository _repository;
-    private readonly ILogger<MarsRoversController> _logger;
+    private readonly IMarsRoverManager marsRoverManager;
+    private readonly ILogger<MarsRoversController> logger;
 
-    public MarsRoversController(IMarsRoversRepository repository, ILogger<MarsRoversController> logger)
+    public MarsRoversController(IMarsRoverManager marsRoverManager, ILogger<MarsRoversController> logger)
     {
-        _repository = repository;
-        _logger = logger;
+        this.marsRoverManager = marsRoverManager;
+        this.logger = logger;
     }
-    
+
     [HttpGet]
     public IActionResult Get()
     {
-        return Ok(new[]
-        {
-            new MarsRoversResponse(0, 0, "N"),
-            new MarsRoversResponse(0, 1, "N"),
-            new MarsRoversResponse(0, 2, "N"),
-            new MarsRoversResponse(0, 2, "E"),
-        });
-        //return _repository.GetWeather();
+        var currentSituation = marsRoverManager.FindCurrentSituation();
+        return Ok(currentSituation);
     }
     
     [HttpPost]
@@ -34,8 +29,7 @@ public class MarsRoversController : ControllerBase
     {
         return Ok(new MarsRoversResponse(0, 1, "N"));
 
-        _repository.Save(marsRoversRequest);
-        return CreatedAtRoute("GetWeatherForecast", null, null);
+        marsRoverManager.Move(marsRoversRequest.commands);
     }
 }
 
