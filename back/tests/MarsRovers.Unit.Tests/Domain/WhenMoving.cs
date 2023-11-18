@@ -138,5 +138,17 @@ namespace MarsRovers.Unit.Tests.Domain
 
             repository.Received().Save(Arg.Is<MarsRover.Domain.Situation>(situation => situation.X == 0 && situation.Y == 3 && situation.Orientation == "N"));
         }
+
+        [Fact]
+        public void ForwardBeyondTheHighHorizontalEdgeThenMoveToTheBottomPosition()
+        {
+            var map = new Map(3, 3);
+            var robot = new Robot(map, 0, 3, "W");
+            repository.Find().Returns(robot);
+
+            manager.Move("NB");
+
+            repository.Received().Save(Arg.Is<MarsRover.Domain.Situation>(situation => situation.X == 0 && situation.Y == 3 && situation.Orientation == "N"));
+        }
     }
 }
