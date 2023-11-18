@@ -7,9 +7,9 @@ namespace MarsRover.Domain
         private Position position;
         private Orientation orientation;
 
-        public Robot(int x, int y, string orientation)
+        public Robot(Map map, int x, int y, string orientation)
         {
-            position = new Position(x, y);
+            position = new Position(map, x, y);
             this.orientation = OrientationFactory.Create(orientation);
         }
 
