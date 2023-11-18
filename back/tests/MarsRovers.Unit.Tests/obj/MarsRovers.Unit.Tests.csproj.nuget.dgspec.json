@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\ruben\\Proyectos\\MarsRover\\back\\tests\\MarsRovers.Unit.Tests\\MarsRovers.Unit.Tests.csproj": {}
+    "C:\\Users\\luisr\\Documents\\code\\GitHub\\MarsRover\\back\\tests\\MarsRovers.Unit.Tests\\MarsRovers.Unit.Tests.csproj": {}
   },
   "projects": {
-    "C:\\Users\\ruben\\Proyectos\\MarsRover\\back\\tests\\MarsRovers.Unit.Tests\\MarsRovers.Unit.Tests.csproj": {
+    "C:\\Users\\luisr\\Documents\\code\\GitHub\\MarsRover\\back\\src\\MarsRover\\MarsRover.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ruben\\Proyectos\\MarsRover\\back\\tests\\MarsRovers.Unit.Tests\\MarsRovers.Unit.Tests.csproj",
-        "projectName": "MarsRovers.Unit.Tests",
-        "projectPath": "C:\\Users\\ruben\\Proyectos\\MarsRover\\back\\tests\\MarsRovers.Unit.Tests\\MarsRovers.Unit.Tests.csproj",
-        "packagesPath": "C:\\Users\\ruben\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ruben\\Proyectos\\MarsRover\\back\\tests\\MarsRovers.Unit.Tests\\obj\\",
+        "projectUniqueName": "C:\\Users\\luisr\\Documents\\code\\GitHub\\MarsRover\\back\\src\\MarsRover\\MarsRover.csproj",
+        "projectName": "MarsRover",
+        "projectPath": "C:\\Users\\luisr\\Documents\\code\\GitHub\\MarsRover\\back\\src\\MarsRover\\MarsRover.csproj",
+        "packagesPath": "C:\\Users\\luisr\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\luisr\\Documents\\code\\GitHub\\MarsRover\\back\\src\\MarsRover\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\ruben\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\luisr\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -44,6 +40,86 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "dependencies": {
+            "Microsoft.AspNetCore.OpenApi": {
+              "target": "Package",
+              "version": "[7.0.5, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[7.0.13, )"
+            },
+            "Microsoft.EntityFrameworkCore.InMemory": {
+              "target": "Package",
+              "version": "[7.0.13, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[6.4.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\luisr\\Documents\\code\\GitHub\\MarsRover\\back\\tests\\MarsRovers.Unit.Tests\\MarsRovers.Unit.Tests.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\luisr\\Documents\\code\\GitHub\\MarsRover\\back\\tests\\MarsRovers.Unit.Tests\\MarsRovers.Unit.Tests.csproj",
+        "projectName": "MarsRovers.Unit.Tests",
+        "projectPath": "C:\\Users\\luisr\\Documents\\code\\GitHub\\MarsRover\\back\\tests\\MarsRovers.Unit.Tests\\MarsRovers.Unit.Tests.csproj",
+        "packagesPath": "C:\\Users\\luisr\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\luisr\\Documents\\code\\GitHub\\MarsRover\\back\\tests\\MarsRovers.Unit.Tests\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\luisr\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {
+              "C:\\Users\\luisr\\Documents\\code\\GitHub\\MarsRover\\back\\src\\MarsRover\\MarsRover.csproj": {
+                "projectPath": "C:\\Users\\luisr\\Documents\\code\\GitHub\\MarsRover\\back\\src\\MarsRover\\MarsRover.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "dependencies": {
             "FluentAssertions": {
               "target": "Package",
               "version": "[6.12.0, )"
@@ -51,6 +127,10 @@
             "Microsoft.NET.Test.Sdk": {
               "target": "Package",
               "version": "[17.5.0, )"
+            },
+            "NSubstitute": {
+              "target": "Package",
+              "version": "[5.1.0, )"
             },
             "coverlet.collector": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
@@ -85,7 +165,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     }

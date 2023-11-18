@@ -10,13 +10,7 @@ namespace MarsRovers.Unit.Tests.Controllers
     public class WhenGettingMarsRover
     {
         ILogger<MarsRoversController> logger = Substitute.For<ILogger<MarsRoversController>>();
-        IMarsRoverManager marsRoverManager;
-
-        public WhenGettingMarsRover()
-        {
-            marsRoverManager = Substitute.For<IMarsRoverManager>();
-        }
-
+        IMarsRoverManager marsRoverManager = Substitute.For<IMarsRoverManager>();
 
         [Fact]
         public void ReturnsMarsRover()
