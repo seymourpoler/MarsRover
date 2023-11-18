@@ -27,9 +27,9 @@ public class MarsRoversController : ControllerBase
     [HttpPost]
     public IActionResult Post([FromBody] MarsRoversRequest marsRoversRequest)
     {
-        return Ok(new MarsRoversResponse(0, 1, "N"));
-
         marsRoverManager.Move(marsRoversRequest.commands);
+
+        return Ok();
     }
 }
 
