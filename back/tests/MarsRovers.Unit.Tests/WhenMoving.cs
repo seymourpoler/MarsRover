@@ -16,7 +16,7 @@ namespace MarsRovers.Unit.Tests
         }
 
         [Fact]
-        public void ForwardToTheNorthItSavesRobotSituation()
+        public void ForwardToTheNorth()
         {
             var robot = new Robot(0, 0 , "N");
             repository.Find().Returns(robot);
@@ -27,7 +27,7 @@ namespace MarsRovers.Unit.Tests
         }
 
         [Fact]
-        public void BackwardToTheSouthSavesRobotSituation()
+        public void BackwardToTheSouth()
         {
             var robot = new Robot(0, 0, "N");
             repository.Find().Returns(robot);
@@ -38,7 +38,7 @@ namespace MarsRovers.Unit.Tests
         }
 
         [Fact]
-        public void ForwardToTheSouthItSavesRobotSituation()
+        public void ForwardToTheSouth()
         {
             var robot = new Robot(0, 0, "S");
             repository.Find().Returns(robot);
@@ -49,7 +49,7 @@ namespace MarsRovers.Unit.Tests
         }
 
         [Fact]
-        public void BackwardToTheNorthItSavesRobotSituation()
+        public void BackwardToTheNorth()
         {
             var robot = new Robot(0, 0, "S");
             repository.Find().Returns(robot);
@@ -60,7 +60,7 @@ namespace MarsRovers.Unit.Tests
         }
 
         [Fact]
-        public void ForwardToTheEastSavesRobotSituation()
+        public void ForwardToTheEast()
         {
             var robot = new Robot(0, 0, "E");
             repository.Find().Returns(robot);
@@ -71,7 +71,7 @@ namespace MarsRovers.Unit.Tests
         }
 
         [Fact]
-        public void BackwardToTheWestSavesRobotSituation()
+        public void BackwardToTheWest()
         {
             var robot = new Robot(0, 0, "E");
             repository.Find().Returns(robot);
@@ -82,7 +82,7 @@ namespace MarsRovers.Unit.Tests
         }
 
         [Fact]
-        public void ForwardToTheWestSavesRobotSituation()
+        public void ForwardToTheWest()
         {
             var robot = new Robot(0, 0, "W");
             repository.Find().Returns(robot);
@@ -93,7 +93,7 @@ namespace MarsRovers.Unit.Tests
         }
 
         [Fact]
-        public void BackwardToTheEastSavesRobotSituation()
+        public void BackwardToTheEast()
         {
             var robot = new Robot(0, 0, "W");
             repository.Find().Returns(robot);
