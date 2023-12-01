@@ -9,11 +9,11 @@ namespace MarsRovers.Unit.Tests.Monad
         {
             var eitherWithAnError = Either<Error, Success>.Error(new Error());
 
-            eitherWithAnError.Match(
-                errorFunc: error => error.Should().BeOfType<Error>(),
+            var result = eitherWithAnError.Match<string>(
+                errorFunc: error => { error.Should().BeOfType<Error>(); return "error"; },
                 successFunc: _ => throw new Exception("Either fails"));
             
-
+            result.Should().Be("error");
         }
 
         [Fact]
@@ -21,9 +21,11 @@ namespace MarsRovers.Unit.Tests.Monad
         {
             var eitherWithAnError = Either<Error, Success>.Success(new Success());
 
-            eitherWithAnError.Match(
-                successFunc: error => error.Should().BeOfType<Success>(),
+            var result = eitherWithAnError.Match(
+                successFunc: error => { error.Should().BeOfType<Success>(); return "success"; },
                 errorFunc: _ => throw new Exception("Either fails"));
+
+            result.Should().Be("success");
 
         }
 

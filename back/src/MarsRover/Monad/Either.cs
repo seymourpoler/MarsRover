@@ -39,5 +39,15 @@
                 ? successFunc(SuccessValue)
                 : Task.FromResult(errorFunc(ErrorValue));
 
+        public Task<TResult> MatchAsync<TResult>(Func<TError, Task<TResult>> errorFunc, Func<TSuccess, TResult> successFunc) =>
+           IsSuccess
+               ? Task.FromResult(successFunc(SuccessValue))
+               : errorFunc(ErrorValue);
+
+        public Task<TResult> MatchAsync<TResult>(Func<TError, Task<TResult>> errorFunc, Func<TSuccess, Task<TResult>> successFunc) =>
+          IsSuccess
+              ? successFunc(SuccessValue)
+              : errorFunc(ErrorValue);
+
     }
 }
