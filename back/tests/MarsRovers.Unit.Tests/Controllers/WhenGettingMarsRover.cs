@@ -10,8 +10,16 @@ namespace MarsRovers.Unit.Tests.Controllers
 {
     public class WhenGettingMarsRover
     {
-        ILogger<MarsRoversController> logger = Substitute.For<ILogger<MarsRoversController>>();
-        IMarsRoverManager marsRoverManager = Substitute.For<IMarsRoverManager>();
+        ILogger<MarsRoversController> logger;
+        IMarsRoverManager marsRoverManager;
+        MarsRoversController controller;
+
+        public WhenGettingMarsRover()
+        {
+            logger = Substitute.For<ILogger<MarsRoversController>>();
+            marsRoverManager = Substitute.For<IMarsRoverManager>();
+            controller = new MarsRoversController(marsRoverManager, logger);
+        }
 
         [Fact]
         public void ReturnsMarsRover()
@@ -21,7 +29,6 @@ namespace MarsRovers.Unit.Tests.Controllers
             const string orientation = "N";
             var expecedSituation = new Situation(x, y, orientation);
             marsRoverManager.FindCurrentSituation().Returns(Either<Error, Situation>.Success(expecedSituation));
-            var controller = new MarsRoversController(marsRoverManager, logger);
 
             var response = controller.Get() as OkObjectResult;
 
