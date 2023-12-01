@@ -128,7 +128,7 @@ namespace MarsRovers.Unit.Tests.Domain
         }
 
         [Fact]
-        public void ForwardBeyondTheLowHorizontalEdgeThenMoveToTheTopPosition()
+        public void ForwardBeyondTheLowVerticalEdgeThenMoveToTheTopPosition()
         {
             var map = new Map(3, 3);
             var robot = new Robot(map,0, 0, "W");
@@ -140,15 +140,39 @@ namespace MarsRovers.Unit.Tests.Domain
         }
 
         [Fact]
-        public void ForwardBeyondTheHighHorizontalEdgeThenMoveToTheBottomPosition()
+        public void ForwardBeyondTheHighVerticalEdgeThenMoveToTheBottomPosition()
         {
             var map = new Map(3, 3);
             var robot = new Robot(map, 0, 3, "W");
             repository.Find().Returns(robot);
 
-            manager.Move("NB");
+            manager.Move("NF");
 
-            repository.Received().Save(Arg.Is<MarsRover.Domain.Situation>(situation => situation.X == 0 && situation.Y == 3 && situation.Orientation == "N"));
+            repository.Received().Save(Arg.Is<MarsRover.Domain.Situation>(situation => situation.X == 0 && situation.Y == 0 && situation.Orientation == "N"));
+        }
+
+        [Fact]
+        public void ForwardBeyondTheLowHorizontalEdgeThenMoveToTheTopPosition()
+        {
+            var map = new Map(3, 3);
+            var robot = new Robot(map, 0, 0, "W");
+            repository.Find().Returns(robot);
+
+            manager.Move("EB");
+
+            repository.Received().Save(Arg.Is<MarsRover.Domain.Situation>(situation => situation.X == 3 && situation.Y == 0 && situation.Orientation == "E"));
+        }
+
+        [Fact]
+        public void ForwardBeyondTheHighHorizontalEdgeThenMoveToTheBottomPosition()
+        {
+            var map = new Map(3, 3);
+            var robot = new Robot(map, 3, 0, "W");
+            repository.Find().Returns(robot);
+
+            manager.Move("EF");
+
+            repository.Received().Save(Arg.Is<MarsRover.Domain.Situation>(situation => situation.X == 0 && situation.Y == 0 && situation.Orientation == "E"));
         }
     }
 }
