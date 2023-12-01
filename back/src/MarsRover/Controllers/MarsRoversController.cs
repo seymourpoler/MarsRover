@@ -1,5 +1,4 @@
 using MarsRover.Domain;
-using MarsRover.Repositories;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MarsRover.Controllers;
@@ -21,7 +20,10 @@ public class MarsRoversController : ControllerBase
     public IActionResult Get()
     {
         var currentSituation = marsRoverManager.FindCurrentSituation();
-        return Ok(currentSituation);
+        var result = currentSituation.Match<IActionResult>(
+            successFunction: situation => Ok(situation),
+            errorFunction: error => BadRequest(error));
+        return result;
     }
     
     [HttpPost]

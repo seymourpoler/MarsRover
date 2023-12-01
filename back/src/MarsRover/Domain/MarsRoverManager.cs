@@ -1,11 +1,12 @@
-﻿using MarsRover.Repositories;
+﻿using MarsRover.Monad;
+using MarsRover.Repositories;
 
 namespace MarsRover.Domain
 {
     public interface IMarsRoverManager
     {
         void Move(string movements);
-        Situation FindCurrentSituation();
+        Either<Error, Situation> FindCurrentSituation();
     }
     public class MarsRoverManager : IMarsRoverManager
     {
@@ -23,10 +24,11 @@ namespace MarsRover.Domain
             marsRoversRepository.Save(robot.GetSituation());
         }
 
-        public Situation FindCurrentSituation()
+        public Either<Error, Situation> FindCurrentSituation()
         {
             var robot = marsRoversRepository.Find();
-            return robot.GetSituation();
+            throw new NotImplementedException();
+            //return robot.GetSituation();
         }
     }
 }
