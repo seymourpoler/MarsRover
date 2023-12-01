@@ -2,52 +2,38 @@
 {
     public readonly struct Either<TError, TSuccess>
     {
-        private readonly TError ErrorValue;
-        private readonly TSuccess SuccessValue;
+        public readonly TError ErrorValue { get; }
+        public readonly TSuccess SuccessValue { get; }
 
-        private Either(TError errorValue)
+        private Either(TError error)
         {
-            ErrorValue = errorValue;
+            ErrorValue = error;
             SuccessValue = default;
-            IsSuccess = false;
-            IsError = true;
         }
 
-        private Either(TSuccess successValue)
+        private Either(TSuccess success)
         {
             ErrorValue = default;
-            SuccessValue = successValue;
-            IsSuccess = true;
-            IsError = false;
+            SuccessValue = success;
         }
 
-        public static Either<TError, TSuccess> Error(TError error) => new(error);
+        public static Either<TError, TSuccess> Error(TError error)
+        {
+            return new Either<TError, TSuccess>(error);
+        }
 
-        public static Either<TError, TSuccess> Success(TSuccess success) => new(success);
+        public static Either<TError, TSuccess> Success(TSuccess success)
+        {
+            return new Either<TError, TSuccess>(success);
+        }
 
-        public bool IsSuccess { get; }
-
-        public bool IsError { get; }
-
-        public TResult Match<TResult>(Func<TError, TResult> errorFunc, Func<TSuccess, TResult> successFunc) =>
-            IsSuccess
-                ? successFunc(SuccessValue)
-                : errorFunc(ErrorValue);
-
-        public Task<TResult> MatchAsync<TResult>(Func<TError, TResult> errorFunc, Func<TSuccess, Task<TResult>> successFunc) =>
-            IsSuccess
-                ? successFunc(SuccessValue)
-                : Task.FromResult(errorFunc(ErrorValue));
-
-        public Task<TResult> MatchAsync<TResult>(Func<TError, Task<TResult>> errorFunc, Func<TSuccess, TResult> successFunc) =>
-           IsSuccess
-               ? Task.FromResult(successFunc(SuccessValue))
-               : errorFunc(ErrorValue);
-
-        public Task<TResult> MatchAsync<TResult>(Func<TError, Task<TResult>> errorFunc, Func<TSuccess, Task<TResult>> successFunc) =>
-          IsSuccess
-              ? successFunc(SuccessValue)
-              : errorFunc(ErrorValue);
-
+        public TResult Match<TResult>(Func<TError, TResult> errorFunction, Func<TSuccess, TResult> successFunction)
+        {
+            if (ErrorValue is null) 
+            {
+                return successFunction(SuccessValue);
+            }
+            return errorFunction(ErrorValue);
+        }
     }
 }
