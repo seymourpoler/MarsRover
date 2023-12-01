@@ -20,9 +20,11 @@ public class MarsRoversController : ControllerBase
     public IActionResult Get()
     {
         var currentSituation = marsRoverManager.FindCurrentSituation();
+
         var result = currentSituation.Match<IActionResult>(
             successFunction: situation => Ok(situation),
             errorFunction: error => BadRequest(error));
+        
         return result;
     }
     
@@ -34,5 +36,3 @@ public class MarsRoversController : ControllerBase
         return Ok();
     }
 }
-
-public record MarsRoversResponse(int x, int y, string direction);
