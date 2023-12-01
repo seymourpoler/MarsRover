@@ -2,7 +2,7 @@
 
 namespace MarsRovers.Unit.Tests.Monad
 {
-    public class WhenBinding
+    public class WhenEitherBinding
     {
         [Fact]
         public void SynchronouslyYieldInitialError()

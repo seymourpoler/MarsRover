@@ -2,7 +2,7 @@
 
 namespace MarsRovers.Unit.Tests.Monad
 {
-    public class WhenMatching
+    public class WhenEitherMatching
     {
         [Fact]
         public void MatchWithTheErrorSide()
