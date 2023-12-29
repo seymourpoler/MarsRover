@@ -4,6 +4,8 @@ using MarsRover.Monad;
 using MarsRover.Repositories;
 using NSubstitute;
 using Xunit;
+using DomainMap = MarsRover.Domain.Map;
+using DomainObstacle = MarsRover.Domain.Obstacle;
 
 namespace MarsRovers.Unit.Tests.Domain
 {
@@ -11,13 +13,13 @@ namespace MarsRovers.Unit.Tests.Domain
     {
         IMarsRoversRepository repository;
         MarsRoverManager manager;
-        Map map;
+        DomainMap map;
 
         public WhenRobotIsMoving()
         {
             repository = Substitute.For<IMarsRoversRepository>();
             manager = new MarsRoverManager(repository);
-            map = new Map(3, 3);
+            map = new DomainMap(3, 3);
         }
 
         [Fact]
@@ -34,7 +36,7 @@ namespace MarsRovers.Unit.Tests.Domain
         [Fact]
         public void ReturnsAnErrorIfThereIsAnObstacleForwardingToTheNorth()
         {
-            var map = new Map(3, 3, new[] { new Obstacle(1, 2) });
+            var map = new DomainMap(3, 3, new[] { new DomainObstacle(1, 2) });
             var robot = new Robot(map, 1, 1, "N");
             repository.Find().Returns(Maybe<Robot>.Just(robot));
 
@@ -58,7 +60,7 @@ namespace MarsRovers.Unit.Tests.Domain
         [Fact]
         public void ReturnsAnErrorIfThereIsAnObstacleBackwardToTheSouth()
         {
-            var map = new Map(3, 3, new[] { new Obstacle(1, 0) });
+            var map = new DomainMap(3, 3, new[] { new DomainObstacle(1, 0) });
             var robot = new Robot(map, 1, 1, "N");
             repository.Find().Returns(Maybe<Robot>.Just(robot));
 
@@ -71,7 +73,7 @@ namespace MarsRovers.Unit.Tests.Domain
         [Fact]
         public void BackwardToTheSouth()
         {
-            var map = new Map(3, 3);
+            var map = new DomainMap(3, 3);
             var robot = new Robot(map, 1, 1, "N");
             repository.Find().Returns(Maybe<Robot>.Just(robot));
 
@@ -83,7 +85,7 @@ namespace MarsRovers.Unit.Tests.Domain
         [Fact]
         public void ReturnsAnErrorIfThereIsAnObstacleForwardToTheSouth()
         {
-            var map = new Map(3, 3, new[] { new Obstacle(1, 0) });
+            var map = new DomainMap(3, 3, new[] { new DomainObstacle(1, 0) });
             var robot = new Robot(map, 1, 1, "S");
             repository.Find().Returns(Maybe<Robot>.Just(robot));
 
@@ -107,7 +109,7 @@ namespace MarsRovers.Unit.Tests.Domain
         [Fact]
         public void ReturnsAnErrorIfThereIsAnObstacleBackwardToTheNorth()
         {
-            var map = new Map(3, 3, new[] { new Obstacle(1, 2) });
+            var map = new DomainMap(3, 3, new[] { new DomainObstacle(1, 2) });
             var robot = new Robot(map, 1, 1, "S");
             repository.Find().Returns(Maybe<Robot>.Just(robot));
 
@@ -131,7 +133,7 @@ namespace MarsRovers.Unit.Tests.Domain
         [Fact]
         public void ReturnsAnErrorIfThereIsAnObstacleForwardToTheEast()
         {
-            var map = new Map(3, 3, new[] { new Obstacle(2, 1) });
+            var map = new DomainMap(3, 3, new[] { new DomainObstacle(2, 1) });
             var robot = new Robot(map, 1, 1, "E");
             repository.Find().Returns(Maybe<Robot>.Just(robot));
 
@@ -155,7 +157,7 @@ namespace MarsRovers.Unit.Tests.Domain
         [Fact]
         public void ReturnsAnErrorIfThereIsAnObstacleBackwardToTheWest()
         {
-            var map = new Map(3, 3, new[] { new Obstacle(0, 1) });
+            var map = new DomainMap(3, 3, new[] { new DomainObstacle(0, 1) });
             var robot = new Robot(map, 1, 1, "E");
             repository.Find().Returns(Maybe<Robot>.Just(robot));
 
@@ -179,7 +181,7 @@ namespace MarsRovers.Unit.Tests.Domain
         [Fact]
         public void ReturnsAnErrorIfThereIsAnObstacleForwardToTheWest()
         {
-            var map = new Map(3, 3, new[] { new Obstacle(0, 1) });
+            var map = new DomainMap(3, 3, new[] { new DomainObstacle(0, 1) });
             var robot = new Robot(map, 1, 1, "W");
             repository.Find().Returns(Maybe<Robot>.Just(robot));
 
@@ -203,7 +205,7 @@ namespace MarsRovers.Unit.Tests.Domain
         [Fact]
         public void ReturnsAnErrorIfThereIsAnObstacleBackwardToTheEast()
         {
-            var map = new Map(3, 3, new[] { new Obstacle(2, 1) });
+            var map = new DomainMap(3, 3, new[] { new DomainObstacle(2, 1) });
             var robot = new Robot(map, 1, 1, "W");
             repository.Find().Returns(Maybe<Robot>.Just(robot));
 
@@ -249,7 +251,7 @@ namespace MarsRovers.Unit.Tests.Domain
         [Fact]
         public void ForwardBeyondTheLowVerticalEdgeThenMoveToTheTopPosition()
         {
-            var map = new Map(3, 3);
+            var map = new DomainMap(3, 3);
             var robot = new Robot(map,0, 0, "W");
             repository.Find().Returns(Maybe<Robot>.Just(robot));
 
@@ -261,7 +263,7 @@ namespace MarsRovers.Unit.Tests.Domain
         [Fact]
         public void ForwardBeyondTheHighVerticalEdgeThenMoveToTheBottomPosition()
         {
-            var map = new Map(3, 3);
+            var map = new DomainMap(3, 3);
             var robot = new Robot(map, 0, 3, "W");
             repository.Find().Returns(Maybe<Robot>.Just(robot));
 
@@ -273,7 +275,7 @@ namespace MarsRovers.Unit.Tests.Domain
         [Fact]
         public void ForwardBeyondTheLowHorizontalEdgeThenMoveToTheTopPosition()
         {
-            var map = new Map(3, 3);
+            var map = new DomainMap(3, 3);
             var robot = new Robot(map, 0, 0, "W");
             repository.Find().Returns(Maybe<Robot>.Just(robot));
 
@@ -285,7 +287,7 @@ namespace MarsRovers.Unit.Tests.Domain
         [Fact]
         public void ForwardBeyondTheHighHorizontalEdgeThenMoveToTheBottomPosition()
         {
-            var map = new Map(3, 3);
+            var map = new DomainMap(3, 3);
             var robot = new Robot(map, 3, 0, "W");
             repository.Find().Returns(Maybe<Robot>.Just(robot));
 

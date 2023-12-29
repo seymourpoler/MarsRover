@@ -31,7 +31,7 @@ namespace MarsRovers.Unit.Tests.Domain
         [Fact]
         public void ReturnASuccessIfThereIsARobot()
         {
-            var aRobot = new Robot(new Map(3, 3), 0, 0, "N");
+            var aRobot = new Robot(new MarsRover.Domain.Map(3, 3), 0, 0, "N");
             repository.Find().Returns(Maybe<Robot>.Just(aRobot));
 
             var result = manager.FindCurrentSituation();

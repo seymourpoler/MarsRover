@@ -9,5 +9,8 @@ public class MarsRoversDbContext : DbContext
     { }
 
     public DbSet<MarsRoversRequest> marsRovers { get; set; }
+    
     public DbSet<Situation> Situations{ get; set; }
+
+    public DbSet<Map> Maps { get; set; }
 }

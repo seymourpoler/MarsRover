@@ -35,6 +35,25 @@ public class MarsRoversRepositoryInMemory: IMarsRoversRepository
 
     public Maybe<Robot> Find()
     {
-        throw new NotImplementedException();
+        var map = context.Maps.FirstOrDefault();
+        if(map is null)
+            return Maybe<Robot>.Nothing();
+
+        var situation = context.Situations.LastOrDefault();
+        if (situation is null)
+            return Maybe<Robot>.Nothing();
+
+        var robot = new Robot(BuildMap(map),  situation.X, situation.Y, situation.Orientation);
+        return Maybe<Robot>.Just(robot);
     }
+
+    private MarsRover.Domain.Map BuildMap(Map map)
+    {
+        return new MarsRover.Domain.Map(
+            Vertical: map.Vertical,
+            Horizontal: map.Horizontal,
+            obstacles: map.Obstacles.Select(x => new MarsRover.Domain.Obstacle(x.X, x.Y)).ToArray()
+        );
+    }
+
 }
