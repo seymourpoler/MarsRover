@@ -1,5 +1,6 @@
 ﻿using MarsRover.Controllers;
 using MarsRover.Domain;
+using MarsRover.Monad;
 using DomainSituation = MarsRover.Domain.Situation;
 
 
@@ -10,5 +11,5 @@ public interface IMarsRoversRepository
     void Save(MarsRoversRequest marsRoversRequest);
     void Save(DomainSituation situation);
     List<MarsRoversRequest> GetWeather();
-    Robot Find();
+    Maybe<Robot> Find();
 }

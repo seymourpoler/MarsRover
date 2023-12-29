@@ -22,8 +22,8 @@ public class MarsRoversController : ControllerBase
         var currentSituation = marsRoverManager.FindCurrentSituation();
 
         var result = currentSituation.Match<IActionResult>(
-            successFunction: situation => Ok(situation),
-            errorFunction: error => BadRequest(error));
+            onSuccess: situation => Ok(situation),
+            onError: error => BadRequest(error));
         
         return result;
     }

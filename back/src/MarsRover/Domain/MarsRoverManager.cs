@@ -19,16 +19,21 @@ namespace MarsRover.Domain
 
         public void Move(string movements)
         {
-            var robot = marsRoversRepository.Find();
-            robot.Move(movements);
-            marsRoversRepository.Save(robot.GetSituation());
+            var maybeRobot = marsRoversRepository.Find();
+            maybeRobot.Bind(robot =>
+                {
+                    robot.Move(movements);
+                    marsRoversRepository.Save(robot.GetSituation());
+                });
+            
         }
 
         public Either<Error, Situation> FindCurrentSituation()
         {
             var robot = marsRoversRepository.Find();
-            throw new NotImplementedException();
-            //return robot.GetSituation();
+            return robot.Match<Either<Error, Situation>>(
+                nothing: () => Either<Error, Situation>.Error(new Error()),
+                just: robot => Either<Error, Situation>.Success(robot.GetSituation()));
         }
     }
 }

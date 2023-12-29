@@ -1,6 +1,6 @@
 ﻿using MarsRover.Controllers;
 using MarsRover.Domain;
-
+using MarsRover.Monad;
 using DomainSituation = MarsRover.Domain.Situation;
 using RepositorySituation = MarsRover.Repositories.Situation;
 
@@ -33,7 +33,7 @@ public class MarsRoversRepositoryInMemory: IMarsRoversRepository
         context.SaveChanges();
     }
 
-    public Robot Find()
+    public Maybe<Robot> Find()
     {
         throw new NotImplementedException();
     }
