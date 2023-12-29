@@ -31,7 +31,7 @@ namespace MarsRover.Domain
         public Either<Error, Situation> FindCurrentSituation()
         {
             var robot = marsRoversRepository.Find();
-            return robot.Match<Either<Error, Situation>>(
+            return robot.Match(
                 nothing: () => Either<Error, Situation>.Error(new Error()),
                 just: robot => Either<Error, Situation>.Success(robot.GetSituation()));
         }
