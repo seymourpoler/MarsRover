@@ -16,14 +16,20 @@ namespace MarsRover.Domain
 
         public Either<Error, Position> Down()
         {
+            if (map.IsThereAnObstacle(x, y - 1))
+                return Either<Error, Position>.Error(new Error());
+
             if (map.IsOutOfTheLowVerticalEdge(y - 1))
                 return Either<Error, Position>.Success(new Position(map, x, map.Horizontal));
 
-            return Either<Error, Position>.Success(new Position(map, x, y-1));
+            return Either<Error, Position>.Success(new Position(map, x, y - 1));
         }
 
         public Either<Error, Position> Right()
         {
+            if (map.IsThereAnObstacle(x + 1, y))
+                return Either<Error, Position>.Error(new Error());
+
             if (map.IsOutOfTheHighHorizontalEdge(x + 1))
                 return Either<Error, Position>.Success(new Position(map, map.initialPosition, y));
 
@@ -32,6 +38,9 @@ namespace MarsRover.Domain
 
         public Either<Error, Position> Left()
         {
+            if (map.IsThereAnObstacle(x - 1, y))
+                return Either<Error, Position>.Error(new Error());
+
             if (map.IsOutOfTheLowHorizontalEdge(x - 1))
                 return Either<Error, Position>.Success(new Position(map, map.Horizontal, y));
 

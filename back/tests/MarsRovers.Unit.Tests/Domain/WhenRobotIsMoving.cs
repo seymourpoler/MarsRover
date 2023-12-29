@@ -56,14 +56,41 @@ namespace MarsRovers.Unit.Tests.Domain
         }
 
         [Fact]
+        public void ReturnsAnErrorIfThereIsAnObstacleBackwardToTheSouth()
+        {
+            var map = new Map(3, 3, new[] { new Obstacle(1, 0) });
+            var robot = new Robot(map, 1, 1, "N");
+            repository.Find().Returns(Maybe<Robot>.Just(robot));
+
+            var result = manager.Move("B");
+
+            repository.DidNotReceive().Save(Arg.Any<MarsRover.Domain.Situation>());
+            result.ShouldDeepEqual(Either<Error, MarsRover.Domain.Situation>.Error(new Error()));
+        }
+
+        [Fact]
         public void BackwardToTheSouth()
         {
+            var map = new Map(3, 3);
             var robot = new Robot(map, 1, 1, "N");
             repository.Find().Returns(Maybe<Robot>.Just(robot));
 
             manager.Move("B");
 
             repository.Received().Save(Arg.Is<MarsRover.Domain.Situation>(situation => situation.X == 1 && situation.Y == 0 && situation.Orientation == "N"));
+        }
+
+        [Fact]
+        public void ReturnsAnErrorIfThereIsAnObstacleForwardToTheSouth()
+        {
+            var map = new Map(3, 3, new[] { new Obstacle(1, 0) });
+            var robot = new Robot(map, 1, 1, "S");
+            repository.Find().Returns(Maybe<Robot>.Just(robot));
+
+            var result = manager.Move("F");
+
+            repository.DidNotReceive().Save(Arg.Any<MarsRover.Domain.Situation>());
+            result.ShouldDeepEqual(Either<Error, MarsRover.Domain.Situation>.Error(new Error()));
         }
 
         [Fact]
@@ -78,6 +105,19 @@ namespace MarsRovers.Unit.Tests.Domain
         }
 
         [Fact]
+        public void ReturnsAnErrorIfThereIsAnObstacleBackwardToTheNorth()
+        {
+            var map = new Map(3, 3, new[] { new Obstacle(1, 2) });
+            var robot = new Robot(map, 1, 1, "S");
+            repository.Find().Returns(Maybe<Robot>.Just(robot));
+
+            var result = manager.Move("B");
+
+            repository.DidNotReceive().Save(Arg.Any<MarsRover.Domain.Situation>());
+            result.ShouldDeepEqual(Either<Error, MarsRover.Domain.Situation>.Error(new Error()));
+        }
+
+        [Fact]
         public void BackwardToTheNorth()
         {
             var robot = new Robot(map, 1, 1, "S");
@@ -86,6 +126,19 @@ namespace MarsRovers.Unit.Tests.Domain
             manager.Move("B");
 
             repository.Received().Save(Arg.Is<MarsRover.Domain.Situation>(situation => situation.X == 1 && situation.Y == 2 && situation.Orientation == "S"));
+        }
+
+        [Fact]
+        public void ReturnsAnErrorIfThereIsAnObstacleForwardToTheEast()
+        {
+            var map = new Map(3, 3, new[] { new Obstacle(2, 1) });
+            var robot = new Robot(map, 1, 1, "E");
+            repository.Find().Returns(Maybe<Robot>.Just(robot));
+
+            var result = manager.Move("F");
+
+            repository.DidNotReceive().Save(Arg.Any<MarsRover.Domain.Situation>());
+            result.ShouldDeepEqual(Either<Error, MarsRover.Domain.Situation>.Error(new Error()));
         }
 
         [Fact]
@@ -100,6 +153,19 @@ namespace MarsRovers.Unit.Tests.Domain
         }
 
         [Fact]
+        public void ReturnsAnErrorIfThereIsAnObstacleBackwardToTheWest()
+        {
+            var map = new Map(3, 3, new[] { new Obstacle(0, 1) });
+            var robot = new Robot(map, 1, 1, "E");
+            repository.Find().Returns(Maybe<Robot>.Just(robot));
+
+            var result = manager.Move("B");
+
+            repository.DidNotReceive().Save(Arg.Any<MarsRover.Domain.Situation>());
+            result.ShouldDeepEqual(Either<Error, MarsRover.Domain.Situation>.Error(new Error()));
+        }
+
+        [Fact]
         public void BackwardToTheWest()
         {
             var robot = new Robot(map, 1, 1, "E");
@@ -111,6 +177,19 @@ namespace MarsRovers.Unit.Tests.Domain
         }
 
         [Fact]
+        public void ReturnsAnErrorIfThereIsAnObstacleForwardToTheWest()
+        {
+            var map = new Map(3, 3, new[] { new Obstacle(0, 1) });
+            var robot = new Robot(map, 1, 1, "W");
+            repository.Find().Returns(Maybe<Robot>.Just(robot));
+
+            var result = manager.Move("F");
+
+            repository.DidNotReceive().Save(Arg.Any<MarsRover.Domain.Situation>());
+            result.ShouldDeepEqual(Either<Error, MarsRover.Domain.Situation>.Error(new Error()));
+        }
+
+        [Fact]
         public void ForwardToTheWest()
         {
             var robot = new Robot(map, 1, 1, "W");
@@ -119,6 +198,19 @@ namespace MarsRovers.Unit.Tests.Domain
             manager.Move("F");
 
             repository.Received().Save(Arg.Is<MarsRover.Domain.Situation>(situation => situation.X == 0 && situation.Y == 1 && situation.Orientation == "W"));
+        }
+
+        [Fact]
+        public void ReturnsAnErrorIfThereIsAnObstacleBackwardToTheEast()
+        {
+            var map = new Map(3, 3, new[] { new Obstacle(2, 1) });
+            var robot = new Robot(map, 1, 1, "W");
+            repository.Find().Returns(Maybe<Robot>.Just(robot));
+
+            var result = manager.Move("B");
+
+            repository.DidNotReceive().Save(Arg.Any<MarsRover.Domain.Situation>());
+            result.ShouldDeepEqual(Either<Error, MarsRover.Domain.Situation>.Error(new Error()));
         }
 
         [Fact]
