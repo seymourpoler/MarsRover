@@ -1,5 +1,6 @@
 ﻿using MarsRover.Controllers;
 using MarsRover.Domain;
+using MarsRover.Monad;
 using MarsRover.Repositories;
 
 namespace MarsRovers.Integration.Tests;
@@ -29,7 +30,7 @@ public class MarsRoversRepositoryInMemory: IMarsRoversRepository
         throw new NotImplementedException();
     }
 
-    public Robot Find()
+    Maybe<Robot> IMarsRoversRepository.Find()
     {
         throw new NotImplementedException();
     }

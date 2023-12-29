@@ -5,7 +5,7 @@ namespace MarsRover.Domain
 {
     public interface IMarsRoverManager
     {
-        void Move(string movements);
+        Either<Error, Situation> Move(string movements);
         Either<Error, Situation> FindCurrentSituation();
     }
 
@@ -18,15 +18,30 @@ namespace MarsRover.Domain
             this.marsRoversRepository = marsRoversRepository;
         }
 
-        public void Move(string movements)
+        public Either<Error, Situation> Move(string movements)
         {
-            var maybeRobot = marsRoversRepository.Find();
-            maybeRobot.Bind(robot =>
-                {
-                    robot.Move(movements);
-                    marsRoversRepository.Save(robot.GetSituation());
-                });
-            
+            return marsRoversRepository.Find()
+                .Match<Either<Error, Robot>>(
+                    nothing: () => { return Either<Error, Robot>.Error(new Error()); },
+                    just: robot => { return Either<Error, Robot>.Success(robot); })
+                .Bind(robot => Move(robot, movements))
+                .Bind(robot => Save(robot))
+                .Match<Either<Error, Situation>>(
+                    onError: error => Either<Error, Situation>.Error(error),
+                    onSuccess: robot => Either<Error, Situation>.Success(robot.GetSituation())
+                );
+        }
+
+        private Either<Error, Robot> Move(Robot robot, string movements)
+        {
+            robot.Move(movements);
+            return Either<Error, Robot>.Success(robot);
+        }
+
+        private Either<Error, Robot> Save(Robot robot)
+        {
+            marsRoversRepository.Save(robot.GetSituation());
+            return Either<Error, Robot>.Success(robot);
         }
 
         // It is not needed, but in this case I wanted to combine `monad maybe` and `monad either`.

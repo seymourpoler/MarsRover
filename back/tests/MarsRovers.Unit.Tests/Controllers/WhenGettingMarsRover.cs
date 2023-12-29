@@ -24,7 +24,7 @@ namespace MarsRovers.Unit.Tests.Controllers
         }
 
         [Fact]
-        public void ReturnsMarsRover()
+        public void ReturnsMarsRoverSituation()
         {
             const int x = 0;
             const int y = 0;

@@ -21,18 +21,19 @@ public class MarsRoversController : ControllerBase
     {
         var currentSituation = marsRoverManager.FindCurrentSituation();
 
-        var result = currentSituation.Match<IActionResult>(
+        return currentSituation.Match<IActionResult>(
             onSuccess: situation => Ok(situation),
-            onError: error => BadRequest(error));
-        
-        return result;
+            onError: error => BadRequest(error));   
     }
     
     [HttpPost]
     public IActionResult Post([FromBody] MarsRoversRequest marsRoversRequest)
     {
-        marsRoverManager.Move(marsRoversRequest.commands);
+        var result = marsRoverManager.Move(marsRoversRequest.commands)
+            .Match<IActionResult>(
+            onSuccess: situation => Ok(situation),
+            onError: error => BadRequest(error));
 
-        return Ok();
+        return result;
     }
 }
