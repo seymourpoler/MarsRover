@@ -8,6 +8,7 @@ namespace MarsRover.Domain
         void Move(string movements);
         Either<Error, Situation> FindCurrentSituation();
     }
+
     public class MarsRoverManager : IMarsRoverManager
     {
         private readonly IMarsRoversRepository marsRoversRepository;
@@ -28,6 +29,7 @@ namespace MarsRover.Domain
             
         }
 
+        // It is not needed, but in this case I wanted to combine `monad maybe` and `monad either`.
         public Either<Error, Situation> FindCurrentSituation()
         {
             var robot = marsRoversRepository.Find();
