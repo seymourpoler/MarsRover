@@ -1,4 +1,5 @@
-﻿using MarsRover.Domain;
+﻿using DeepEqual.Syntax;
+using MarsRover.Domain;
 using MarsRover.Monad;
 using MarsRover.Repositories;
 using NSubstitute;
@@ -6,17 +7,28 @@ using Xunit;
 
 namespace MarsRovers.Unit.Tests.Domain
 {
-    public class WhenRoborIsMoving
+    public class WhenRobotIsMoving
     {
         IMarsRoversRepository repository;
         MarsRoverManager manager;
         Map map;
 
-        public WhenRoborIsMoving()
+        public WhenRobotIsMoving()
         {
             repository = Substitute.For<IMarsRoversRepository>();
             manager = new MarsRoverManager(repository);
             map = new Map(3, 3);
+        }
+
+        [Fact]
+        public void ReturnsAnErrorIfThereIsNoRobot()
+        {
+            repository.Find().Returns(Maybe<Robot>.Nothing());
+
+            var result = manager.Move("F");
+
+            repository.DidNotReceive().Save(Arg.Any<MarsRover.Domain.Situation>());
+            result.ShouldDeepEqual(Either<Error, MarsRover.Domain.Situation>.Error(new Error()));
         }
 
         [Fact]
