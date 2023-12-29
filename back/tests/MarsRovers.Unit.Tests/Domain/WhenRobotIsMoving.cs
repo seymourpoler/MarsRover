@@ -32,6 +32,19 @@ namespace MarsRovers.Unit.Tests.Domain
         }
 
         [Fact]
+        public void ReturnsAnErrorIfThereIsAnObstacleForwardingToTheNorth()
+        {
+            var map = new Map(3, 3, new[] { new Obstacle(1, 2) });
+            var robot = new Robot(map, 1, 1, "N");
+            repository.Find().Returns(Maybe<Robot>.Just(robot));
+
+            var result = manager.Move("F");
+
+            repository.DidNotReceive().Save(Arg.Any<MarsRover.Domain.Situation>());
+            result.ShouldDeepEqual(Either<Error, MarsRover.Domain.Situation>.Error(new Error()));
+        }
+
+        [Fact]
         public void ForwardToTheNorth()
         {
             var robot = new Robot(map, 1, 1, "N");

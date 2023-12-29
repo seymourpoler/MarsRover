@@ -1,4 +1,5 @@
 ﻿using MarsRover.Domain.Orientations;
+using MarsRover.Monad;
 
 namespace MarsRover.Domain
 {
@@ -13,33 +14,61 @@ namespace MarsRover.Domain
             this.orientation = OrientationFactory.Create(orientation);
         }
 
-        internal Situation GetSituation()
+        public Situation GetSituation()
         {
             return new Situation(position.x, position.y, orientation.ToString());
         }
 
-        public void Move(string movements)
+        public Either<Error, Robot> Move(string movements)
         {
-            foreach(var movement in movements)
+            var result = Either<Error, Robot>.Success(this);
+            foreach (var movement in movements)
             {
-                Move(movement);
+                result = result.Bind(_ => Move(movement));
             }
+            return result;
         }
 
-        private void Move(char movement)
+        private Either<Error, Robot> Move(char movement)
         {
             if(movement == 'F')
             {
-                position = orientation.Forward(position);
-                return;
+                return Forward();
+
             }
-            if(movement == 'B')
+            if (movement == 'B')
             {
-                position = orientation.Backward(position);
-                return;
+                return Backward();
             }
 
             orientation = OrientationFactory.Create(movement.ToString());
+            return Either<Error, Robot>.Success(this);
+        }
+
+        private Either<Error, Robot> Forward()
+        {
+            return orientation.Forward(position)
+                .Bind(UpdatePosition)
+                .Match(
+                    onSuccess: _ => Either<Error, Robot>.Success(this),
+                    onError: Either<Error, Robot>.Error
+            );
+        }
+
+        private Either<Error, Robot> Backward()
+        {
+            return orientation.Backward(position)
+                .Bind(UpdatePosition)
+                .Match(
+                    onSuccess: _ => Either<Error, Robot>.Success(this),
+                    onError: Either<Error, Robot>.Error
+                );
+        }
+
+        private Either<Error, Position> UpdatePosition(Position position)
+        {
+            this.position = position;
+            return Either<Error, Position>.Success(position);
         }
     }
 }

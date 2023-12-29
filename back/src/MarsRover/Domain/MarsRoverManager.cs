@@ -21,21 +21,15 @@ namespace MarsRover.Domain
         public Either<Error, Situation> Move(string movements)
         {
             return marsRoversRepository.Find()
-                .Match<Either<Error, Robot>>(
+                .Match(
                     nothing: () => { return Either<Error, Robot>.Error(new Error()); },
-                    just: robot => { return Either<Error, Robot>.Success(robot); })
-                .Bind(robot => Move(robot, movements))
-                .Bind(robot => Save(robot))
-                .Match<Either<Error, Situation>>(
-                    onError: error => Either<Error, Situation>.Error(error),
+                    just: Either<Error, Robot>.Success)
+                .Bind(robot => robot.Move(movements))
+                .Bind(Save)
+                .Match(
+                    onError: Either<Error, Situation>.Error,
                     onSuccess: robot => Either<Error, Situation>.Success(robot.GetSituation())
                 );
-        }
-
-        private Either<Error, Robot> Move(Robot robot, string movements)
-        {
-            robot.Move(movements);
-            return Either<Error, Robot>.Success(robot);
         }
 
         private Either<Error, Robot> Save(Robot robot)

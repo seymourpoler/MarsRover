@@ -1,8 +1,6 @@
-﻿using System.Reflection.Metadata.Ecma335;
-
-namespace MarsRover.Domain
+﻿namespace MarsRover.Domain
 {
-    public record Map(int horizontal, int vertical)
+    public record Map(int Horizontal, int Vertical, params Obstacle[] obstacles)
     {
         public int initialPosition = 0;
 
@@ -13,17 +11,22 @@ namespace MarsRover.Domain
 
         public bool IsOutOfTheHighVerticalEdge(int y)
         {
-            return vertical < y;
+            return Vertical < y;
         }
 
-        internal bool IsOutOfTheHighHorizontalEdge(int x)
+        public bool IsOutOfTheHighHorizontalEdge(int x)
         {
-            return horizontal < x;
+            return Horizontal < x;
         }
 
-        internal bool IsOutOfTheLowHorizontalEdge(int x)
+        public bool IsOutOfTheLowHorizontalEdge(int x)
         {
             return initialPosition > x;
+        }
+
+        public bool IsThereAnObstacle(int x, int y)
+        {
+            return obstacles.Any(position => position.IsEqualTo(x, y));
         }
     }
 }

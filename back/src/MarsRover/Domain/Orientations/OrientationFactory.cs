@@ -13,7 +13,7 @@
             if (orientation == "W")
                 return new West();
 
-            throw new NotImplementedException();
+            throw new NotImplementedException(); // TODO : User Either monad
         }
     }
 }
