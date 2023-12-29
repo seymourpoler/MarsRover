@@ -2,19 +2,19 @@
 {
     public readonly struct Either<TError, TSuccess>
     {
-        public readonly TError ErrorValue { get; }
-        public readonly TSuccess SuccessValue { get; }
+        private readonly TError error { get; }
+        private readonly TSuccess success { get; }
 
         private Either(TError error)
         {
-            ErrorValue = error;
-            SuccessValue = default;
+            this.error = error;
+            success = default;
         }
 
         private Either(TSuccess success)
         {
-            ErrorValue = default;
-            SuccessValue = success;
+            error = default;
+            this.success = success;
         }
 
         public static Either<TError, TSuccess> Error(TError error)
@@ -27,13 +27,20 @@
             return new Either<TError, TSuccess>(success);
         }
 
-        public TResult Match<TResult>(Func<TError, TResult> errorFunction, Func<TSuccess, TResult> successFunction)
+        public Either<TError, TOtherSuccess> Bind<TOtherSuccess>(Func<TSuccess, Either<TError, TOtherSuccess>> onSuccess)
         {
-            if (ErrorValue is null) 
+            if (success is null)
+                return Either<TError, TOtherSuccess>.Error(error);
+            return onSuccess(success);
+        }
+
+        public TResult Match<TResult>(Func<TError, TResult> onError, Func<TSuccess, TResult> onSuccess)
+        {
+            if (error is null) 
             {
-                return successFunction(SuccessValue);
+                return onSuccess(success);
             }
-            return errorFunction(ErrorValue);
+            return onError(error);
         }
     }
 }
