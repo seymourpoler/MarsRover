@@ -24,6 +24,15 @@
           "build/netstandard1.0/coverlet.collector.targets": {}
         }
       },
+      "DeepEqual/4.2.1": {
+        "type": "package",
+        "compile": {
+          "lib/net6.0/DeepEqual.dll": {}
+        },
+        "runtime": {
+          "lib/net6.0/DeepEqual.dll": {}
+        }
+      },
       "FluentAssertions/6.12.0": {
         "type": "package",
         "dependencies": {
@@ -2231,6 +2240,22 @@
         "coverlet-icon.png",
         "coverlet.collector.3.2.0.nupkg.sha512",
         "coverlet.collector.nuspec"
+      ]
+    },
+    "DeepEqual/4.2.1": {
+      "sha512": "aaBFzb5mQdYyZ4hVWcVobS+iq9+aHpgcYgQXcV1l54vjAVONVq6H5F4nnGiyb+ErBhyy8eRvIPkJ3BGSWiflgg==",
+      "type": "package",
+      "path": "deepequal/4.2.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Readme.md",
+        "deepequal.4.2.1.nupkg.sha512",
+        "deepequal.nuspec",
+        "lib/net6.0/DeepEqual.dll",
+        "lib/netcoreapp3.1/DeepEqual.dll",
+        "lib/netstandard2.0/DeepEqual.dll",
+        "lib/netstandard2.1/DeepEqual.dll"
       ]
     },
     "FluentAssertions/6.12.0": {
@@ -6785,6 +6810,7 @@
   },
   "projectFileDependencyGroups": {
     "net7.0": [
+      "DeepEqual >= 4.2.1",
       "FluentAssertions >= 6.12.0",
       "MarsRover >= 1.0.0",
       "Microsoft.NET.Test.Sdk >= 17.5.0",
@@ -6837,6 +6863,10 @@
       "net7.0": {
         "targetAlias": "net7.0",
         "dependencies": {
+          "DeepEqual": {
+            "target": "Package",
+            "version": "[4.2.1, )"
+          },
           "FluentAssertions": {
             "target": "Package",
             "version": "[6.12.0, )"

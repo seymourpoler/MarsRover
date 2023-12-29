@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "J9fllc0ifaH6OyzjBf4uMiviH42KV0MrkVVqSwpfMWNIXX4AYMJ8sMqpxgEJTjaqjLtmnVB9sbou6DH1YKbSdw==",
+  "dgSpecHash": "/yFkEvVkGtivQ10Waos7guRmXJn6PgEIC51Ou1e75Tquo7GDaFV7O3DLMP5DO1MdOJpbZSikIwRLMnBIlptZ2A==",
   "success": true,
   "projectFilePath": "C:\\Users\\luisr\\Documents\\code\\GitHub\\MarsRover\\back\\tests\\MarsRovers.Unit.Tests\\MarsRovers.Unit.Tests.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\luisr\\.nuget\\packages\\castle.core\\5.1.1\\castle.core.5.1.1.nupkg.sha512",
     "C:\\Users\\luisr\\.nuget\\packages\\coverlet.collector\\3.2.0\\coverlet.collector.3.2.0.nupkg.sha512",
+    "C:\\Users\\luisr\\.nuget\\packages\\deepequal\\4.2.1\\deepequal.4.2.1.nupkg.sha512",
     "C:\\Users\\luisr\\.nuget\\packages\\fluentassertions\\6.12.0\\fluentassertions.6.12.0.nupkg.sha512",
     "C:\\Users\\luisr\\.nuget\\packages\\microsoft.aspnetcore.openapi\\7.0.5\\microsoft.aspnetcore.openapi.7.0.5.nupkg.sha512",
     "C:\\Users\\luisr\\.nuget\\packages\\microsoft.codecoverage\\17.5.0\\microsoft.codecoverage.17.5.0.nupkg.sha512",

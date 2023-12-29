@@ -11,6 +11,7 @@ namespace MarsRover.Domain
             
             if (map.IsOutOfTheHighVerticalEdge(y + 1))
                 return Either<Error, Position>.Success(new Position(map, x, map.initialPosition));
+
             return Either<Error, Position>.Success(new Position(map, x, y + 1));
         }
 

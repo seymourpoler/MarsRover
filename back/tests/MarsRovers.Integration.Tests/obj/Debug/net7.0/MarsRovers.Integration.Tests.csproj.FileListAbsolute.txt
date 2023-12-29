@@ -844,3 +844,4 @@ C:\Users\luisr\Documents\code\GitHub\MarsRover\back\tests\MarsRovers.Integration
 C:\Users\luisr\Documents\code\GitHub\MarsRover\back\tests\MarsRovers.Integration.Tests\obj\Debug\net7.0\MarsRovers.Integration.Tests.pdb
 C:\Users\luisr\Documents\code\GitHub\MarsRover\back\tests\MarsRovers.Integration.Tests\obj\Debug\net7.0\MarsRovers.Integration.Tests.genruntimeconfig.cache
 C:\Users\luisr\Documents\code\GitHub\MarsRover\back\tests\MarsRovers.Integration.Tests\obj\Debug\net7.0\ref\MarsRovers.Integration.Tests.dll
+C:\Users\luisr\Documents\code\GitHub\MarsRover\back\tests\MarsRovers.Integration.Tests\obj\Debug\net7.0\MarsRovers.Integration.Tests.sourcelink.json
