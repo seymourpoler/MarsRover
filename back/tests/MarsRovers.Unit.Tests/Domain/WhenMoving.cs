@@ -1,4 +1,5 @@
 ﻿using MarsRover.Domain;
+using MarsRover.Monad;
 using MarsRover.Repositories;
 using NSubstitute;
 
@@ -21,7 +22,7 @@ namespace MarsRovers.Unit.Tests.Domain
         public void ForwardToTheNorth()
         {
             var robot = new Robot(map, 1, 1, "N");
-            repository.Find().Returns(robot);
+            repository.Find().Returns(Maybe<Robot>.Just(robot));
 
             manager.Move("F");
 
@@ -32,7 +33,7 @@ namespace MarsRovers.Unit.Tests.Domain
         public void BackwardToTheSouth()
         {
             var robot = new Robot(map, 1, 1, "N");
-            repository.Find().Returns(robot);
+            repository.Find().Returns(Maybe<Robot>.Just(robot));
 
             manager.Move("B");
 
@@ -43,7 +44,7 @@ namespace MarsRovers.Unit.Tests.Domain
         public void ForwardToTheSouth()
         {
             var robot = new Robot(map, 1, 1, "S");
-            repository.Find().Returns(robot);
+            repository.Find().Returns(Maybe<Robot>.Just(robot));
 
             manager.Move("F");
 
@@ -54,7 +55,7 @@ namespace MarsRovers.Unit.Tests.Domain
         public void BackwardToTheNorth()
         {
             var robot = new Robot(map, 1, 1, "S");
-            repository.Find().Returns(robot);
+            repository.Find().Returns(Maybe<Robot>.Just(robot));
 
             manager.Move("B");
 
@@ -65,7 +66,7 @@ namespace MarsRovers.Unit.Tests.Domain
         public void ForwardToTheEast()
         {
             var robot = new Robot(map, 1, 1, "E");
-            repository.Find().Returns(robot);
+            repository.Find().Returns(Maybe<Robot>.Just(robot));
 
             manager.Move("F");
 
@@ -76,7 +77,7 @@ namespace MarsRovers.Unit.Tests.Domain
         public void BackwardToTheWest()
         {
             var robot = new Robot(map, 1, 1, "E");
-            repository.Find().Returns(robot);
+            repository.Find().Returns(Maybe<Robot>.Just(robot));
 
             manager.Move("B");
 
@@ -87,7 +88,7 @@ namespace MarsRovers.Unit.Tests.Domain
         public void ForwardToTheWest()
         {
             var robot = new Robot(map, 1, 1, "W");
-            repository.Find().Returns(robot);
+            repository.Find().Returns(Maybe<Robot>.Just(robot));
 
             manager.Move("F");
 
@@ -98,7 +99,7 @@ namespace MarsRovers.Unit.Tests.Domain
         public void BackwardToTheEast()
         {
             var robot = new Robot(map, 1, 1, "W");
-            repository.Find().Returns(robot);
+            repository.Find().Returns(Maybe<Robot>.Just(robot));
 
             manager.Move("B");
 
@@ -109,7 +110,7 @@ namespace MarsRovers.Unit.Tests.Domain
         public void ForwardToTheNorthFromEastOrientation()
         {
             var robot = new Robot(map, 1, 1, "E");
-            repository.Find().Returns(robot);
+            repository.Find().Returns(Maybe<Robot>.Just(robot));
 
             manager.Move("NF");
 
@@ -120,7 +121,7 @@ namespace MarsRovers.Unit.Tests.Domain
         public void BackwardToTheSouthFromWestOrientation()
         {
             var robot = new Robot(map, 1, 1, "W");
-            repository.Find().Returns(robot);
+            repository.Find().Returns(Maybe<Robot>.Just(robot));
 
             manager.Move("NB");
 
@@ -132,7 +133,7 @@ namespace MarsRovers.Unit.Tests.Domain
         {
             var map = new Map(3, 3);
             var robot = new Robot(map,0, 0, "W");
-            repository.Find().Returns(robot);
+            repository.Find().Returns(Maybe<Robot>.Just(robot));
 
             manager.Move("NB");
 
@@ -144,7 +145,7 @@ namespace MarsRovers.Unit.Tests.Domain
         {
             var map = new Map(3, 3);
             var robot = new Robot(map, 0, 3, "W");
-            repository.Find().Returns(robot);
+            repository.Find().Returns(Maybe<Robot>.Just(robot));
 
             manager.Move("NF");
 
@@ -156,7 +157,7 @@ namespace MarsRovers.Unit.Tests.Domain
         {
             var map = new Map(3, 3);
             var robot = new Robot(map, 0, 0, "W");
-            repository.Find().Returns(robot);
+            repository.Find().Returns(Maybe<Robot>.Just(robot));
 
             manager.Move("EB");
 
@@ -168,7 +169,7 @@ namespace MarsRovers.Unit.Tests.Domain
         {
             var map = new Map(3, 3);
             var robot = new Robot(map, 3, 0, "W");
-            repository.Find().Returns(robot);
+            repository.Find().Returns(Maybe<Robot>.Just(robot));
 
             manager.Move("EF");
 

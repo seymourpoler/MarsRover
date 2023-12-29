@@ -19,5 +19,13 @@
                 ? nothing()
                 : just(value);
         }
+
+        public void Bind(Action<T> action)
+        {
+            if (value is null)
+                return;
+
+            action(value);
+        }
     }
 }
