@@ -3,6 +3,7 @@ using MarsRover.Domain;
 using MarsRover.Monad;
 using MarsRover.Repositories;
 using NSubstitute;
+using Xunit;
 
 namespace MarsRovers.Unit.Tests.Domain
 {

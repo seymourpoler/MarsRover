@@ -1,10 +1,12 @@
-﻿using MarsRover.Controllers;
+﻿using FluentAssertions;
+using MarsRover.Controllers;
 using MarsRover.Domain;
 using MarsRover.Monad;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using NSubstitute;
 using System.Net;
+using Xunit;
 
 namespace MarsRovers.Unit.Tests.Controllers
 {

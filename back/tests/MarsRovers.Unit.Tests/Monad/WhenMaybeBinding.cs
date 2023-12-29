@@ -1,4 +1,6 @@
-﻿using MarsRover.Monad;
+﻿using FluentAssertions;
+using MarsRover.Monad;
+using Xunit;
 
 namespace MarsRovers.Unit.Tests.Monad
 {

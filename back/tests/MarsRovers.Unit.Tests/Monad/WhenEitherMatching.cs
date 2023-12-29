@@ -1,4 +1,6 @@
-﻿using MarsRover.Monad;
+﻿using FluentAssertions;
+using MarsRover.Monad;
+using Xunit;
 
 namespace MarsRovers.Unit.Tests.Monad
 {
@@ -26,7 +28,6 @@ namespace MarsRovers.Unit.Tests.Monad
                 onError: _ => throw new Exception("Either fails"));
 
             result.Should().Be("success");
-
         }
 
         private class Error { }
