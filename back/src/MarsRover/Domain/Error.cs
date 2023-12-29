@@ -1,6 +1,5 @@
-﻿namespace MarsRover.Domain
+﻿namespace MarsRover.Domain;
+
+public class Error
 {
-    public class Error
-    {
-    }
 }

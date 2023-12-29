@@ -5,38 +5,37 @@ using MarsRover.Repositories;
 using NSubstitute;
 using Xunit;
 
-namespace MarsRovers.Unit.Tests.Domain
+namespace MarsRovers.Unit.Tests.Domain;
+
+public class WhenFindingMarsRover
 {
-    public class WhenFindingMarsRover
+    IMarsRoversRepository repository;
+    IMarsRoverManager manager;
+
+    public WhenFindingMarsRover()
     {
-        IMarsRoversRepository repository;
-        IMarsRoverManager manager;
+        repository = Substitute.For<IMarsRoversRepository>();
+        manager = new MarsRoverManager(repository);
+    }
 
-        public WhenFindingMarsRover()
-        {
-            repository = Substitute.For<IMarsRoversRepository>();
-            manager = new MarsRoverManager(repository);
-        }
+    [Fact]
+    public void ReturnAnErrorIfThereIsNoRobot()
+    {
+        repository.Find().Returns(Maybe<Robot>.Nothing());
 
-        [Fact]
-        public void ReturnAnErrorIfThereIsNoRobot()
-        {
-            repository.Find().Returns(Maybe<Robot>.Nothing());
+        var result = manager.FindCurrentSituation();
 
-            var result = manager.FindCurrentSituation();
+        result.ShouldDeepEqual(Either<Error, MarsRover.Domain.Situation>.Error(new MarsRover.Domain.Error()));
+    }
 
-            result.ShouldDeepEqual(Either<Error, MarsRover.Domain.Situation>.Error(new MarsRover.Domain.Error()));
-        }
+    [Fact]
+    public void ReturnASuccessIfThereIsARobot()
+    {
+        var aRobot = new Robot(new MarsRover.Domain.Map(3, 3), 0, 0, "N");
+        repository.Find().Returns(Maybe<Robot>.Just(aRobot));
 
-        [Fact]
-        public void ReturnASuccessIfThereIsARobot()
-        {
-            var aRobot = new Robot(new MarsRover.Domain.Map(3, 3), 0, 0, "N");
-            repository.Find().Returns(Maybe<Robot>.Just(aRobot));
+        var result = manager.FindCurrentSituation();
 
-            var result = manager.FindCurrentSituation();
-
-            result.ShouldDeepEqual(Either<Error, MarsRover.Domain.Situation>.Success(new MarsRover.Domain.Situation(0, 0, "N")));
-        }
+        result.ShouldDeepEqual(Either<Error, MarsRover.Domain.Situation>.Success(new MarsRover.Domain.Situation(0, 0, "N")));
     }
 }

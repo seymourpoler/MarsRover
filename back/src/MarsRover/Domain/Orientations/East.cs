@@ -1,22 +1,21 @@
 ﻿using MarsRover.Monad;
 
-namespace MarsRover.Domain.Orientations
+namespace MarsRover.Domain.Orientations;
+
+public class East : Orientation
 {
-    public class East : Orientation
+    public override Either<Error, Position> Backward(Position position)
     {
-        public override Either<Error, Position> Backward(Position position)
-        {
-            return position.Left();
-        }
+        return position.Left();
+    }
 
-        public override Either<Error, Position> Forward(Position position)
-        {
-            return position.Right();
-        }
+    public override Either<Error, Position> Forward(Position position)
+    {
+        return position.Right();
+    }
 
-        public override string ToString()
-        {
-            return "E";
-        }
+    public override string ToString()
+    {
+        return "E";
     }
 }
