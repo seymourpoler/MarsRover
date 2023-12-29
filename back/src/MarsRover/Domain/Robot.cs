@@ -33,36 +33,26 @@ namespace MarsRover.Domain
         {
             if(movement == 'F')
             {
-                return Forward();
-
-            }
-            if (movement == 'B')
-            {
-                return Backward();
-            }
-
-            orientation = OrientationFactory.Create(movement.ToString());
-            return Either<Error, Robot>.Success(this);
-        }
-
-        private Either<Error, Robot> Forward()
-        {
-            return orientation.Forward(position)
-                .Bind(UpdatePosition)
-                .Match(
-                    onSuccess: _ => Either<Error, Robot>.Success(this),
-                    onError: Either<Error, Robot>.Error
-            );
-        }
-
-        private Either<Error, Robot> Backward()
-        {
-            return orientation.Backward(position)
+                return orientation.Forward(position)
                 .Bind(UpdatePosition)
                 .Match(
                     onSuccess: _ => Either<Error, Robot>.Success(this),
                     onError: Either<Error, Robot>.Error
                 );
+
+            }
+            if (movement == 'B')
+            {
+                return orientation.Backward(position)
+                .Bind(UpdatePosition)
+                .Match(
+                    onSuccess: _ => Either<Error, Robot>.Success(this),
+                    onError: Either<Error, Robot>.Error
+                );
+            }
+
+            orientation = OrientationFactory.Create(movement.ToString());
+            return Either<Error, Robot>.Success(this);
         }
 
         private Either<Error, Position> UpdatePosition(Position position)
