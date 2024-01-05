@@ -1,6 +1,7 @@
 using System.Net.Mime;
 using System.Text;
 using System.Text.Json;
+using DeepEqual.Syntax;
 using FluentAssertions;
 using MarsRover.Controllers;
 using MarsRover.Repositories;
@@ -12,7 +13,7 @@ public class MarsRoversControllerTests
 {
     private readonly TestWebApplicationFactory application;
     private readonly HttpClient httpClient;
-    private const string BaseUrl = "api/WeatherForecast";
+    private const string BaseUrl = "api/MarsRovers";
     private readonly MarsRoversRepositoryInMemory repository;
 
     public MarsRoversControllerTests()
@@ -30,11 +31,12 @@ public class MarsRoversControllerTests
 
         var response = await httpClient.GetAsync($"{BaseUrl}");
 
-        var stringResult = await response.Content.ReadAsStringAsync();
-        var carriers = JsonDeserializeContent<List<MarsRoversRequest>>(stringResult);
+        response.StatusCode.Should().Be(System.Net.HttpStatusCode.OK);
 
-        carriers.Should().HaveCount(2);
-        response.EnsureSuccessStatusCode();
+        var stringResult = await response.Content.ReadAsStringAsync();
+        var situation = JsonDeserializeContent<MarsRover.Domain.Situation>(stringResult);
+
+        situation.ShouldDeepEqual(new MarsRover.Domain.Situation(0, 1, "N"));
     }
 
     private static T JsonDeserializeContent<T>(string content)

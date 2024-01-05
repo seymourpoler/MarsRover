@@ -1,9 +1,7 @@
 ﻿using MarsRover.Domain;
 using MarsRover.Repositories;
 using Microsoft.AspNetCore.Mvc.Testing;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
 
 // using Wke.Invoicing.Stock.Carriers.Application.Repositories;
@@ -20,6 +18,7 @@ public class TestWebApplicationFactory: WebApplicationFactory<Program>
     protected override IHost CreateHost(IHostBuilder builder)
     {
         dbContext = MarsRoversDbContext.Create();
+        dbContext.Maps.Add(new MarsRover.Repositories.Map { Id = Guid.NewGuid(), Horizontal = 3, Vertical = 3, Obstacles = new List<MarsRover.Repositories.Obstacle>() });
         builder.ConfigureServices(services =>
         {
             services.AddTransient<IMarsRoverManager, MarsRoverManager>();
