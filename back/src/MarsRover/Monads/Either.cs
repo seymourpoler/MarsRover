@@ -1,4 +1,4 @@
-﻿namespace MarsRover.Monad;
+﻿namespace MarsRover.Monads;
 
 public readonly struct Either<TError, TSuccess>
 {

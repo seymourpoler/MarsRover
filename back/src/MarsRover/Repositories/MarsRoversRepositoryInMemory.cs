@@ -1,6 +1,6 @@
 ﻿using MarsRover.Controllers;
 using MarsRover.Domain;
-using MarsRover.Monad;
+using MarsRover.Monads;
 using DomainSituation = MarsRover.Domain.Situation;
 using RepositorySituation = MarsRover.Repositories.Situation;
 

@@ -1,8 +1,8 @@
 ﻿using FluentAssertions;
-using MarsRover.Monad;
+using MarsRover.Monads;
 using Xunit;
 
-namespace MarsRovers.Unit.Tests.Monad;
+namespace MarsRovers.Unit.Tests.Monads;
 
 public class WhenEitherMatching
 {

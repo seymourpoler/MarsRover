@@ -1,6 +1,6 @@
 ﻿using MarsRover.Controllers;
 using MarsRover.Domain;
-using MarsRover.Monad;
+using MarsRover.Monads;
 using MarsRover.Repositories;
 
 namespace MarsRovers.Integration.Tests;

@@ -1,4 +1,4 @@
-﻿using MarsRover.Monad;
+﻿using MarsRover.Monads;
 
 namespace MarsRover.Domain.Orientations;
 

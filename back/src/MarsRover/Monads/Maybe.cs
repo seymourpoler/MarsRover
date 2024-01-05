@@ -1,4 +1,4 @@
-﻿namespace MarsRover.Monad;
+﻿namespace MarsRover.Monads;
 
 public struct Maybe<T>
 {

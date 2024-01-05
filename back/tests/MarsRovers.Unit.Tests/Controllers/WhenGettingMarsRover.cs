@@ -1,7 +1,7 @@
 ﻿using FluentAssertions;
 using MarsRover.Controllers;
 using MarsRover.Domain;
-using MarsRover.Monad;
+using MarsRover.Monads;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using NSubstitute;
