@@ -1,7 +1,6 @@
 ﻿using DeepEqual.Syntax;
 using MarsRover.Domain;
 using MarsRover.Monads;
-using MarsRover.Repositories;
 using NSubstitute;
 using Xunit;
 

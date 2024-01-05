@@ -1,3 +1,4 @@
+using MarsRover.Domain;
 using MarsRover.Repositories;
 using Microsoft.EntityFrameworkCore;
 

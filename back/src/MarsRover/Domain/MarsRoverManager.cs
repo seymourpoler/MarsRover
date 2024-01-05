@@ -1,5 +1,4 @@
 ﻿using MarsRover.Monads;
-using MarsRover.Repositories;
 
 namespace MarsRover.Domain;
 

@@ -1,10 +1,9 @@
 ﻿using MarsRover.Controllers;
-using MarsRover.Domain;
 using MarsRover.Monads;
 using DomainSituation = MarsRover.Domain.Situation;
 
 
-namespace MarsRover.Repositories;
+namespace MarsRover.Domain;
 
 public interface IMarsRoversRepository
 {
