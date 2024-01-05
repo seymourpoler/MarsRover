@@ -17,7 +17,7 @@ public class MarsRoversRepositoryInMemory : IMarsRoversRepository
 
     public void Save(DomainSituation situation)
     {
-        context.Situations.Add(new RepositorySituation { X = situation.X, Y = situation.Y, Orientation = situation.Orientation });
+        context.Situations.Add(new RepositorySituation {Id = Guid.NewGuid(),  X = situation.X, Y = situation.Y, Orientation = situation.Orientation });
         context.SaveChanges();
     }
 

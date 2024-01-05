@@ -11,9 +11,9 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddDbContext<MarsRoversDbContext>(options => options.UseInMemoryDatabase("WeatherForecastDb"));
-// builder.Services.AddScoped<IWeatherForecastRepository, SqlCarrierRepository>(); //TODO: Change for this
-builder.Services.AddScoped<IMarsRoversRepository, MarsRoversRepositoryInMemory>(); //TODO: Change for this
+builder.Services.AddDbContext<MarsRoversDbContext>(options => options.UseInMemoryDatabase("MarsRoverDataBase"));
+builder.Services.AddScoped<IMarsRoverManager, MarsRoverManager>();
+builder.Services.AddScoped<IMarsRoversRepository, MarsRoversRepositoryInMemory>();
 
 builder.Services.AddCors(options =>
 {

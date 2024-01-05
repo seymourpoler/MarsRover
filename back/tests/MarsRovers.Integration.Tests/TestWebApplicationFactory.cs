@@ -1,9 +1,10 @@
 ﻿using MarsRover.Domain;
+using MarsRover.Repositories;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
-using Microsoft.VisualStudio.TestPlatform.TestHost;
 
 // using Wke.Invoicing.Stock.Carriers.Application.Repositories;
 // using Wke.Invoicing.Stock.Carriers.Infrastructure.Integration.Tests.Helpers.DB;
@@ -14,17 +15,16 @@ public class TestWebApplicationFactory: WebApplicationFactory<Program>
 {
     private bool _isDisposed = false;
     private IServiceScope _serviceScope;
-    private IConfiguration _configuration;
-    
-
-    public WeatherForecastDbContext DbContext;
+    public MarsRoversDbContext dbContext;
 
     protected override IHost CreateHost(IHostBuilder builder)
     {
-        DbContext = new WeatherForecastDbContext(WeatherForecastDbContext.DbContextOptions());
+        dbContext = MarsRoversDbContext.Create();
         builder.ConfigureServices(services =>
         {
-            services.AddScoped<IMarsRoversRepository, MarsRoversRepositoryInMemory>(x => new MarsRoversRepositoryInMemory(DbContext));
+            services.AddTransient<IMarsRoverManager, MarsRoverManager>();
+            services.AddTransient<IMarsRoversRepository, MarsRoversRepositoryInMemory>(x => new MarsRoversRepositoryInMemory(dbContext));
+            
         });
 
         return base.CreateHost(builder);
@@ -46,8 +46,8 @@ public class TestWebApplicationFactory: WebApplicationFactory<Program>
         base.Dispose(isDisposing);
     }
 
-    public async Task ClearDatabase()
+    public void ClearDatabase()
     {
-        DbContext.ChangeTracker.Clear();
+        dbContext.ChangeTracker.Clear();
     }
 }
